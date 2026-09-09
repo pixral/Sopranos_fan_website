@@ -1,0 +1,140 @@
+/* ==========================================================================
+   LOS SOPRANO - Estilos de la página Temporadas
+   ========================================================================== */
+
+/* ---------- Datos generales ---------- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.stat {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 22px 16px;
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.stat__numero {
+  font-family: var(--fuente-titulo);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--rojo-claro);
+}
+
+.stat__texto {
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+/* ---------- Listado de temporadas ---------- */
+.temporadas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+
+.temporada {
+  flex: 1 1 calc(50% - 13px);
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+}
+
+.temporada__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.temporada__numero {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  font-family: var(--fuente-titulo);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--texto);
+  background-color: var(--negro);
+  border: 1px solid var(--rojo);
+  border-radius: var(--radio);
+}
+
+.temporada__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.temporada__meta {
+  font-size: .76rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dorado);
+}
+
+.temporada__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+}
+
+.temporada__cuerpo p { color: var(--texto-tenue); }
+
+.temporada__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.chip {
+  padding: 6px 13px;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+  background-color: var(--negro);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+}
+
+.temporada:hover .chip { border-color: rgba(179, 18, 43, .4); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .temporada {
+    flex: 1 1 100%;
+    padding: 22px;
+  }
+
+  .temporada__numero { width: 54px; height: 54px; font-size: 1.3rem; }
+  .stat { flex: 1 1 140px; padding: 18px 12px; }
+  .stat__numero { font-size: 1.9rem; }
+}
+
+@media (max-width: 480px) {
+  .stats { gap: 12px; }
+  .stat { flex: 1 1 calc(50% - 6px); }
+}

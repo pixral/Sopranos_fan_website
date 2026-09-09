@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto | Los Soprano</title>
+  <meta name="description" content="Escribinos: sugerencias, correcciones y colaboraciones para el sitio de fans de Los Soprano.">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/contacto.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ===== CABECERA ===== -->
+  <header class="cabecera" id="cabecera">
+    <div class="contenedor cabecera__inner">
+      <a class="logo" href="index.html" aria-label="Los Soprano - Inicio">
+        <img src="img/logo.svg" alt="Logo de Los Soprano">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="menu">
+        <ul class="nav__lista">
+          <li><a class="nav__link" href="index.html">Inicio</a></li>
+          <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
+          <li><a class="nav__link" href="galeria.html">Galería</a></li>
+          <li><a class="nav__link nav__link--activo" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO ===== -->
+  <main class="principal">
+
+    <div class="contenedor">
+      <div class="encabezado-pagina">
+        <p class="migas"><a href="index.html">Inicio</a> <span>/</span> Contacto</p>
+        <h1 class="encabezado-pagina__titulo">Contacto</h1>
+        <span class="hero__linea" aria-hidden="true"></span>
+        <p class="encabezado-pagina__bajada">
+          ¿Encontraste un error, querés sumar una ficha de episodio o proponer una nota?
+          Escribinos y te respondemos.
+        </p>
+      </div>
+    </div>
+
+    <section class="contenedor seccion">
+      <div class="contacto">
+
+        <!-- Columna izquierda: formulario -->
+        <div class="contacto__col">
+          <h2 class="titulo-seccion">Escribinos</h2>
+
+          <form class="formulario" id="formContacto" novalidate>
+
+            <div class="campo">
+              <label for="nombre">Nombre y apellido <span class="req">*</span></label>
+              <input type="text" id="nombre" name="nombre" placeholder="Christopher Moltisanti"
+                     autocomplete="name" maxlength="60" aria-describedby="errorNombre" required>
+              <p class="campo__error" id="errorNombre" aria-live="polite"></p>
+            </div>
+
+            <div class="campo">
+              <label for="email">Correo electrónico <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="nombre@correo.com"
+                     autocomplete="email" maxlength="80" aria-describedby="errorEmail" required>
+              <p class="campo__error" id="errorEmail" aria-live="polite"></p>
+            </div>
+
+            <div class="campo">
+              <label for="asunto">Asunto <span class="req">*</span></label>
+              <select id="asunto" name="asunto" aria-describedby="errorAsunto" required>
+                <option value="">Elegí una opción</option>
+                <option value="correccion">Corregir un dato del sitio</option>
+                <option value="contenido">Proponer contenido</option>
+                <option value="galeria">Aportar material para la galería</option>
+                <option value="otro">Otro</option>
+              </select>
+              <p class="campo__error" id="errorAsunto" aria-live="polite"></p>
+            </div>
+
+            <div class="campo">
+              <label for="mensaje">Mensaje <span class="req">*</span></label>
+              <textarea id="mensaje" name="mensaje" rows="6" maxlength="500"
+                        aria-describedby="ayudaMensaje errorMensaje"
+                        placeholder="Contanos de qué se trata (mínimo 20 caracteres)" required></textarea>
+              <p class="campo__ayuda" id="ayudaMensaje"><span id="contadorMensaje">0</span> / 500 caracteres</p>
+              <p class="campo__error" id="errorMensaje" aria-live="polite"></p>
+            </div>
+
+            <div class="campo campo--check">
+              <label class="check">
+                <input type="checkbox" id="condiciones" name="condiciones"
+                       aria-describedby="errorCondiciones" required>
+                <span>Leí y acepto los <a href="#">términos y condiciones</a> del sitio. <span class="req">*</span></span>
+              </label>
+              <p class="campo__error" id="errorCondiciones" aria-live="polite"></p>
+            </div>
+
+            <button type="submit" class="boton boton--primario">
+              <i class="fa-solid fa-paper-plane"></i> Enviar mensaje
+            </button>
+
+            <p class="formulario__aviso">
+              <span class="req">*</span> Campos obligatorios. Este formulario es una demostración:
+              no envía datos a ningún servidor.
+            </p>
+
+            <!-- Mensaje de resultado -->
+            <p class="formulario__ok oculto" id="formOk" role="status">
+              <i class="fa-solid fa-circle-check"></i>
+              ¡Gracias! Tu mensaje quedó registrado. Te respondemos a la brevedad.
+            </p>
+          </form>
+        </div>
+
+        <!-- Columna derecha: datos -->
+        <div class="contacto__col">
+          <h2 class="titulo-seccion">Otros canales</h2>
+
+          <ul class="datos">
+            <li class="dato">
+              <span class="dato__icono"><i class="fa-solid fa-envelope"></i></span>
+              <div>
+                <h3 class="dato__titulo">Correo</h3>
+                <p><a href="mailto:hola@lossoprano-fans.com">hola@lossoprano-fans.com</a></p>
+              </div>
+            </li>
+            <li class="dato">
+              <span class="dato__icono"><i class="fa-solid fa-location-dot"></i></span>
+              <div>
+                <h3 class="dato__titulo">Dónde estamos</h3>
+                <p>Comunidad online. Nos juntamos los domingos a ver un capítulo, virtualmente.</p>
+              </div>
+            </li>
+            <li class="dato">
+              <span class="dato__icono"><i class="fa-solid fa-clock"></i></span>
+              <div>
+                <h3 class="dato__titulo">Tiempo de respuesta</h3>
+                <p>Entre 24 y 72 horas. Somos fans, no una redacción.</p>
+              </div>
+            </li>
+            <li class="dato">
+              <span class="dato__icono"><i class="fa-solid fa-circle-question"></i></span>
+              <div>
+                <h3 class="dato__titulo">Antes de escribir</h3>
+                <p>Si tu consulta es sobre una temporada, fijate primero en la sección
+                   <a href="temporadas.html">Temporadas</a>.</p>
+              </div>
+            </li>
+          </ul>
+
+          <h2 class="titulo-seccion titulo-seccion--menor">Preguntas frecuentes</h2>
+          <ul class="faq">
+            <li>
+              <details class="faq__item">
+                <summary class="faq__pregunta">¿Puedo reutilizar las imágenes del sitio?</summary>
+                <p class="faq__respuesta">
+                  Las imágenes vienen de Wikimedia Commons con licencia Creative Commons:
+                  se pueden reutilizar respetando la atribución que figura debajo de cada una.
+                  Los fotogramas de la serie los publicó la propia HBO bajo CC BY 3.0.
+                </p>
+              </details>
+            </li>
+            <li>
+              <details class="faq__item">
+                <summary class="faq__pregunta">¿Aceptan colaboraciones?</summary>
+                <p class="faq__respuesta">
+                  Sí: fichas de episodios, correcciones de datos y traducciones. Escribinos
+                  eligiendo el asunto <em>Proponer contenido</em> y contanos qué tenés en mente.
+                </p>
+              </details>
+            </li>
+            <li>
+              <details class="faq__item">
+                <summary class="faq__pregunta">¿Dónde se puede ver la serie?</summary>
+                <p class="faq__respuesta">
+                  No enlazamos sitios de streaming. <em>Los Soprano</em> es una producción de HBO
+                  y está disponible en sus plataformas oficiales según el país.
+                </p>
+              </details>
+            </li>
+            <li>
+              <details class="faq__item">
+                <summary class="faq__pregunta">¿El formulario envía el mensaje?</summary>
+                <p class="faq__respuesta">
+                  No. Es una demostración de validación con JavaScript: no hay servidor detrás,
+                  así que los datos no salen del navegador ni se guardan en ningún lado.
+                </p>
+              </details>
+            </li>
+          </ul>
+
+          <div class="tarjeta redes-caja">
+            <p class="redes-caja__titulo">También por redes</p>
+            <ul class="redes">
+              <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
+              <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+              <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+              <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PIE DE SITIO ===== -->
+  <footer class="pie">
+    <div class="contenedor pie__inner">
+      <div class="pie__legales">
+        <p class="pie__copy">&copy; <span id="anio">2026</span> Los Soprano &mdash; Sitio de fans sin fines de lucro.</p>
+        <p class="pie__aviso">
+          Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
+          Este sitio no está afiliado ni patrocinado por HBO.
+        </p>
+        <ul class="pie__enlaces">
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="pie__redes">
+        <p class="pie__redes-titulo">Seguinos</p>
+        <ul class="redes">
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
+</html>

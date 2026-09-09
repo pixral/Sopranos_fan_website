@@ -1,0 +1,268 @@
+/* ==========================================================================
+   LOS SOPRANO - Estilos de la página Contacto
+   ========================================================================== */
+
+/* ---------- Dos columnas ---------- */
+.contacto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.contacto__col { flex: 1 1 420px; min-width: 0; }
+
+/* ---------- Formulario ---------- */
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.campo label {
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+.req { color: var(--rojo-claro); }
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-family: var(--fuente-texto);
+  font-size: .95rem;
+  color: var(--texto);
+  transition: border-color var(--transicion), background-color var(--transicion);
+}
+
+.campo textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+.campo input::placeholder,
+.campo textarea::placeholder { color: #5c5751; }
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--rojo);
+  background-color: var(--negro-suave);
+}
+
+/* Flecha del select */
+.campo select {
+  appearance: none;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--texto-tenue) 50%),
+    linear-gradient(135deg, var(--texto-tenue) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 22px, calc(100% - 16px) 22px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.campo__ayuda {
+  font-size: .74rem;
+  color: #6d675f;
+  text-align: right;
+}
+
+/* Errores */
+.campo__error {
+  display: none;
+  align-items: center;
+  gap: 7px;
+  font-size: .78rem;
+  color: var(--rojo-claro);
+}
+
+.campo--error .campo__error { display: flex; }
+
+.campo--error input,
+.campo--error select,
+.campo--error textarea { border-color: var(--rojo); }
+
+/* Checkbox */
+.campo--check { margin-top: 4px; }
+
+/* Se sube la especificidad para ganarle a `.campo label` */
+.campo label.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: .88rem;
+  font-weight: 300;
+  color: var(--texto-tenue);
+}
+
+.check input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
+  margin-top: 2px;
+  accent-color: var(--rojo);
+  cursor: pointer;
+}
+
+.check a { color: var(--texto); text-decoration: underline; text-underline-offset: 3px; }
+.check a:hover { color: var(--rojo-claro); }
+
+.formulario .boton { align-self: flex-start; margin-top: 8px; }
+
+.formulario__aviso {
+  margin-top: 16px;
+  font-size: .76rem;
+  color: #6d675f;
+}
+
+.formulario__ok {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  font-size: .9rem;
+  color: #9fe0b0;
+  background-color: rgba(45, 120, 70, .14);
+  border: 1px solid rgba(90, 190, 120, .4);
+  border-radius: var(--radio);
+}
+
+/* ---------- Columna de datos ---------- */
+.datos {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-bottom: 32px;
+}
+
+.dato {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.dato__icono {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  font-size: 1.05rem;
+  color: var(--rojo-claro);
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+}
+
+.dato__titulo {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--texto);
+  margin-bottom: 4px;
+}
+
+.dato p { font-size: .93rem; color: var(--texto-tenue); }
+.dato a { color: var(--dorado); text-decoration: underline; text-underline-offset: 3px; }
+.dato a:hover { color: var(--rojo-claro); }
+
+/* ---------- Preguntas frecuentes ---------- */
+.titulo-seccion--menor { font-size: 1.15rem; margin-bottom: 18px; }
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.faq__item {
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  transition: border-color var(--transicion);
+}
+
+.faq__item[open] { border-color: rgba(179, 18, 43, .5); }
+
+.faq__pregunta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 18px;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--texto);
+  cursor: pointer;
+  list-style: none;          /* oculta el triángulo por defecto */
+}
+
+.faq__pregunta::-webkit-details-marker { display: none; }
+
+/* Flecha propia */
+.faq__pregunta::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--rojo-claro);
+  transition: transform var(--transicion);
+}
+
+.faq__item[open] .faq__pregunta::after { content: "\2212"; }
+
+.faq__pregunta:hover { color: #fff; }
+
+.faq__respuesta {
+  padding: 0 18px 16px;
+  font-size: .88rem;
+  color: var(--texto-tenue);
+}
+
+.faq__respuesta em { color: var(--texto); font-style: italic; }
+
+/* Caja de redes */
+.redes-caja {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 26px;
+}
+
+.redes-caja:hover { transform: none; }
+
+.redes-caja__titulo {
+  font-size: .74rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .contacto { gap: 40px; }
+  .contacto__col { flex: 1 1 100%; }
+  .formulario .boton { align-self: stretch; }
+}

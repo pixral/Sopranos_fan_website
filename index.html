@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los Soprano | Sitio oficial de fans</title>
+  <meta name="description" content="Sitio dedicado a Los Soprano: temporadas, galería y contacto. Todo sobre la serie que cambió la televisión.">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ===== CABECERA ===== -->
+  <header class="cabecera" id="cabecera">
+    <div class="contenedor cabecera__inner">
+
+      <a class="logo" href="index.html" aria-label="Los Soprano - Inicio">
+        <img src="img/logo.svg" alt="Logo de Los Soprano">
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="menu">
+        <ul class="nav__lista">
+          <li><a class="nav__link nav__link--activo" href="index.html">Inicio</a></li>
+          <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
+          <li><a class="nav__link" href="galeria.html">Galería</a></li>
+          <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="principal principal--inicio">
+
+    <!-- Montaje de fondo: fotogramas que se van cortando entre sí (solo CSS) -->
+    <div class="montaje" aria-hidden="true">
+      <img class="montaje__foto" src="img/montaje/f1-army-of-one.jpg" alt="" fetchpriority="high">
+      <img class="montaje__foto" src="img/montaje/f2-chris-paulie.jpg" alt="">
+      <img class="montaje__foto" src="img/montaje/f3-cumple-aj.jpg" alt="">
+      <img class="montaje__foto" src="img/montaje/f4-bobby-tony.jpg" alt="">
+      <img class="montaje__foto" src="img/montaje/f5-silvio.jpg" alt="">
+      <img class="montaje__foto" src="img/montaje/f6-furio.jpg" alt="">
+      <span class="montaje__velo"></span>
+    </div>
+
+    <div class="contenedor">
+      <section class="hero">
+
+        <!-- Columna izquierda: título + 3 párrafos -->
+        <div class="hero__col hero__col--texto">
+          <p class="hero__antetitulo">HBO &middot; 1999 &ndash; 2007</p>
+          <h1 class="hero__titulo">Los Soprano</h1>
+          <span class="hero__linea" aria-hidden="true"></span>
+
+          <p>
+            Tony Soprano lo tiene todo: una casa en los suburbios de Nueva Jersey, una
+            esposa que lo sostiene, dos hijos adolescentes y el control de la familia
+            criminal más poderosa del estado. También tiene ataques de pánico. Cuando se
+            desmaya junto a la pileta de su casa, termina en el diván de la doctora
+            Jennifer Melfi, y ahí empieza una historia que la televisión nunca había
+            contado de esa manera.
+          </p>
+          <p>
+            Creada por David Chase y protagonizada por James Gandolfini, la serie convirtió
+            la vida doméstica de un mafioso en un retrato incómodo de la clase media
+            estadounidense. Entre reuniones en la trastienda del Bada Bing, cenas familiares
+            y sesiones de terapia, cada capítulo pone en tensión dos lealtades imposibles de
+            conciliar: la familia de sangre y la Familia.
+          </p>
+          <p>
+            A lo largo de seis temporadas y 86 episodios, <em>Los Soprano</em> ganó 21 premios
+            Emmy y cinco Globos de Oro, y abrió la puerta a toda la ficción televisiva que vino
+            después. Recorré las temporadas, mirá la galería de personajes y sumate a la
+            conversación sobre el final más discutido de la historia de la TV.
+          </p>
+        </div>
+
+        <!-- Columna derecha: imagen representativa -->
+        <div class="hero__col hero__col--imagen">
+          <figure class="hero__figura">
+            <img src="img/galeria/gandolfini.jpg"
+                 alt="James Gandolfini, intérprete de Tony Soprano, en el Festival Internacional de Cine de Toronto de 2011">
+            <figcaption>
+              James Gandolfini fue Tony Soprano durante seis temporadas.
+              <span class="hero__credito">
+                Foto: <a href="https://commons.wikimedia.org/wiki/File:James_Gandolfini_@_Toronto_International_Film_Festival_2011.jpg" target="_blank" rel="noopener">gdcgraphics</a>
+                · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- ===== PIE DE SITIO ===== -->
+  <footer class="pie">
+    <div class="contenedor pie__inner">
+
+      <div class="pie__legales">
+        <p class="pie__copy">&copy; <span id="anio">2026</span> Los Soprano &mdash; Sitio de fans sin fines de lucro.</p>
+        <p class="pie__aviso">
+          Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
+          Este sitio no está afiliado ni patrocinado por HBO.
+          Fotogramas del fondo: HBO,
+          <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>
+          vía <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>.
+        </p>
+        <ul class="pie__enlaces">
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__redes">
+        <p class="pie__redes-titulo">Seguinos</p>
+        <ul class="redes">
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

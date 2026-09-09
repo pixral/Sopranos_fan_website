@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería | Los Soprano</title>
+  <meta name="description" content="Galería del elenco y de las locaciones reales donde se filmó Los Soprano.">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/galeria.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ===== CABECERA ===== -->
+  <header class="cabecera" id="cabecera">
+    <div class="contenedor cabecera__inner">
+      <a class="logo" href="index.html" aria-label="Los Soprano - Inicio">
+        <img src="img/logo.svg" alt="Logo de Los Soprano">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="menu">
+        <ul class="nav__lista">
+          <li><a class="nav__link" href="index.html">Inicio</a></li>
+          <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
+          <li><a class="nav__link nav__link--activo" href="galeria.html">Galería</a></li>
+          <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO ===== -->
+  <main class="principal">
+
+    <div class="contenedor">
+      <div class="encabezado-pagina">
+        <p class="migas"><a href="index.html">Inicio</a> <span>/</span> Galería</p>
+        <h1 class="encabezado-pagina__titulo">Galería</h1>
+        <span class="hero__linea" aria-hidden="true"></span>
+        <p class="encabezado-pagina__bajada">
+          Los personajes, los momentos que quedaron grabados, el elenco fuera de cámara
+          y las locaciones reales de Nueva Jersey donde se filmó la serie.
+          Filtrá por categoría y hacé clic en cualquier imagen para verla en grande.
+        </p>
+      </div>
+    </div>
+
+    <section class="contenedor seccion">
+
+      <!-- Filtros -->
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar galería por categoría">
+        <button class="filtro filtro--activo" data-filtro="todas">Todas</button>
+        <button class="filtro" data-filtro="personajes">Personajes</button>
+        <button class="filtro" data-filtro="momentos">Momentos</button>
+        <button class="filtro" data-filtro="elenco">Elenco</button>
+        <button class="filtro" data-filtro="locaciones">Locaciones</button>
+      </div>
+
+      <p class="galeria__contador" id="contador" role="status"></p>
+
+      <!-- Grilla -->
+      <ul class="galeria" id="galeria">
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Tony Soprano"
+                  data-epigrafe="Jefe de la familia DiMeo y, dos veces por semana, paciente de la doctora Melfi."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-tony.jpg" loading="lazy" alt="Tony Soprano en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Tony Soprano</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Corrado “Junior” Soprano"
+                  data-epigrafe="El tío de Tony: jefe nominal de la familia y rival permanente."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-junior.jpg" loading="lazy" alt="Junior Soprano en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Corrado “Junior” Soprano</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Junior_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Christopher Moltisanti"
+                  data-epigrafe="El ahijado de Tony, que sueña con escribir guiones de cine."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-christopher.jpg" loading="lazy" alt="Christopher Moltisanti en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Christopher Moltisanti</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Christopher_Moltisanti_(Tony_Soprano%27s_Family_Captains).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Paulie “Walnuts” Gualtieri"
+                  data-epigrafe="Capo de la vieja escuela, supersticioso y de lealtad elástica."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-paulie.jpg" loading="lazy" alt="Paulie Gualtieri en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Paulie “Walnuts” Gualtieri</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Paulie_Gualtieri_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Silvio Dante"
+                  data-epigrafe="Consigliere de Tony y dueño del Bada Bing."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-silvio.jpg" loading="lazy" alt="Silvio Dante en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Silvio Dante</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Silvio_Dante_(Tony_Soprano%27s_Family_Captains).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Adriana La Cerva"
+                  data-epigrafe="La novia de Christopher, atrapada entre el grupo y el FBI."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-adriana.jpg" loading="lazy" alt="Adriana La Cerva en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Adriana La Cerva</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Adriana_La_Cerva_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Janice Soprano"
+                  data-epigrafe="La hermana mayor de Tony, que vuelve a Nueva Jersey a cobrarse lo suyo."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-janice.jpg" loading="lazy" alt="Janice Soprano en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Janice Soprano</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Janice_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Meadow Soprano"
+                  data-epigrafe="La hija que entiende de qué vive su padre y elige mirar para otro lado."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-meadow.jpg" loading="lazy" alt="Meadow Soprano en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Meadow Soprano</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Meadow_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="A.J. Soprano"
+                  data-epigrafe="El hijo menor, que carga con el apellido sin saber qué hacer con él."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-aj.jpg" loading="lazy" alt="A.J. Soprano en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">A.J. Soprano</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:A.J._Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Bobby Baccalieri"
+                  data-epigrafe="El más noble del grupo, y el que más tarda en mancharse las manos."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-bobby.jpg" loading="lazy" alt="Bobby Baccalieri en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Bobby Baccalieri</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Bobby_Baccalieri_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Ralph Cifaretto"
+                  data-epigrafe="Tan rentable como incontrolable: el problema de la cuarta temporada."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-ralph.jpg" loading="lazy" alt="Ralph Cifaretto en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Ralph Cifaretto</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Ralph_Cifaretto_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="personajes">
+          <button class="galeria__boton"
+                  data-titulo="Big Pussy Bonpensiero"
+                  data-epigrafe="Amigo de toda la vida de Tony, y la traición que abre la serie."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/p-pussy.jpg" loading="lazy" alt="Big Pussy Bonpensiero en un fotograma de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Big Pussy Bonpensiero</span>
+              <span class="galeria__cat">Personajes</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Salvatore_%22Big_Pussy%22_Bonpensiero_(Tony_Soprano%27s_Family_Captains).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="En el diván"
+                  data-epigrafe="La sesión con la doctora Melfi: el recurso que cambió la televisión."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-terapia.jpg" loading="lazy" alt="Tony Soprano durante una sesión de terapia">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">En el diván</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Soprano_therapy_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="El final"
+                  data-epigrafe="La última escena en Holsten’s, todavía discutida casi veinte años después."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-final.jpg" loading="lazy" alt="Tony Soprano en la escena final de la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">El final</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Soprano_finale_(The_Sopranos_Top_25_Best_Lines).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="El discurso"
+                  data-epigrafe="Cuando Tony habla de la familia, nunca queda claro de cuál de las dos."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-discurso.jpg" loading="lazy" alt="Tony Soprano dando un discurso">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">El discurso</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Soprano_speech_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="Padre e hija"
+                  data-epigrafe="Meadow y Tony: la conversación que ninguno de los dos quiere tener del todo."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-meadow-tony.jpg" loading="lazy" alt="Meadow y Tony Soprano conversando">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Padre e hija</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Meadow_and_Tony_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="Tony y Junior"
+                  data-epigrafe="Sobrino y tío, socios y adversarios en la misma mesa."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-tony-junior.jpg" loading="lazy" alt="Tony Soprano junto a su tío Junior">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Tony y Junior</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_and_Junior_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="Adriana y Christopher"
+                  data-epigrafe="La pareja más inestable de Nueva Jersey."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-adri-chris.jpg" loading="lazy" alt="Adriana La Cerva y Christopher Moltisanti juntos">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Adriana y Christopher</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Adriana_La_Cerva_and_Christopher_Moltisanti_(Tony_Soprano%27s_Family_Captains).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="Tony y Richie Aprile"
+                  data-epigrafe="Richie sale de prisión y quiere recuperar un lugar que ya no existe."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-richie.jpg" loading="lazy" alt="Tony Soprano frente a Richie Aprile">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Tony y Richie Aprile</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Soprano_and_Richie_Aprile_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="momentos">
+          <button class="galeria__boton"
+                  data-titulo="Satriale’s en la serie"
+                  data-epigrafe="La carnicería donde se cierra todo lo que no puede hablarse por teléfono."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/m-satriales.jpg" loading="lazy" alt="La carnicería Satriale's tal como aparece en la serie">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Satriale’s en la serie</span>
+              <span class="galeria__cat">Momentos</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Satriale%27s_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="James Gandolfini"
+                  data-epigrafe="Tony Soprano. Ganó tres premios Emmy por el papel."
+                  data-credito="Foto: gdcgraphics · CC BY-SA 2.0 · Wikimedia Commons">
+            <img src="img/galeria/gandolfini.jpg" loading="lazy" alt="James Gandolfini en el Festival Internacional de Cine de Toronto, 2011">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">James Gandolfini</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:James_Gandolfini_@_Toronto_International_Film_Festival_2011.jpg" target="_blank" rel="noopener">gdcgraphics</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Edie Falco"
+                  data-epigrafe="Carmela Soprano, el otro centro de gravedad de la casa."
+                  data-credito="Foto: David Shankbone · CC BY-SA 3.0 · Wikimedia Commons">
+            <img src="img/galeria/falco.jpg" loading="lazy" alt="Retrato de la actriz Edie Falco">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Edie Falco</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Edie_Falco_2_by_David_Shankbone.jpg" target="_blank" rel="noopener">David Shankbone</a> · <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Lorraine Bracco"
+                  data-epigrafe="La doctora Jennifer Melfi, la única persona que escucha a Tony."
+                  data-credito="Foto: Iustinus · CC BY-SA 3.0 · Wikimedia Commons">
+            <img src="img/galeria/bracco.jpg" loading="lazy" alt="Retrato de la actriz Lorraine Bracco">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Lorraine Bracco</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Lorraine_Bracco.jpg" target="_blank" rel="noopener">Iustinus</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Michael Imperioli"
+                  data-epigrafe="Dio vida a Christopher Moltisanti durante las seis temporadas."
+                  data-credito="Foto: Josh Miller · CC BY 2.0 · Wikimedia Commons">
+            <img src="img/galeria/imperioli.jpg" loading="lazy" alt="Michael Imperioli en 2007">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Michael Imperioli</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Michael_Imperioli_2007_(Chris_Moltisanti_from_The_Sopranos).jpg" target="_blank" rel="noopener">Josh Miller</a> · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Tony Sirico"
+                  data-epigrafe="Paulie Gualtieri. Antes de actuar tuvo una vida bastante parecida al papel."
+                  data-credito="Foto: Lakisha A. Croley, U.S. Air Force · Public domain · Wikimedia Commons">
+            <img src="img/galeria/sirico.jpg" loading="lazy" alt="Retrato del actor Tony Sirico en 2010">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Tony Sirico</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Sirico,_2010_(cropped).jpg" target="_blank" rel="noopener">Lakisha A. Croley, U.S. Air Force</a> · <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Public domain</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Steven Van Zandt"
+                  data-epigrafe="Silvio Dante. Guitarrista de la E Street Band antes que actor."
+                  data-credito="Foto: Fuzheado · CC BY-SA 4.0 · Wikimedia Commons">
+            <img src="img/galeria/vanzandt.jpg" loading="lazy" alt="Retrato del músico y actor Steven Van Zandt">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Steven Van Zandt</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Smwknd-steven-van-zandt-3814.jpg" target="_blank" rel="noopener">Fuzheado</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Vincent Pastore"
+                  data-epigrafe="Big Pussy Bonpensiero, el informante de la segunda temporada."
+                  data-credito="Foto: Rob DiCaterino · CC BY 2.0 · Wikimedia Commons">
+            <img src="img/galeria/pastore.jpg" loading="lazy" alt="Retrato del actor Vincent Pastore">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Vincent Pastore</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Vincent_Pastore_2017_(cropped).jpg" target="_blank" rel="noopener">Rob DiCaterino</a> · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Drea de Matteo"
+                  data-epigrafe="Adriana La Cerva. Ganó un Emmy por el papel en 2004."
+                  data-credito="Foto: Gabbot · CC BY-SA 2.0 · Wikimedia Commons">
+            <img src="img/galeria/dematteo.jpg" loading="lazy" alt="Retrato de la actriz Drea de Matteo">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Drea de Matteo</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Drea_de_Matteo_feb_2015.jpg" target="_blank" rel="noopener">Gabbot</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Jamie-Lynn Sigler"
+                  data-epigrafe="Meadow Soprano, desde la adolescencia hasta la última escena."
+                  data-credito="Foto: Kristin Dos Santos · CC BY-SA 2.0 · Wikimedia Commons">
+            <img src="img/galeria/sigler.jpg" loading="lazy" alt="Retrato de la actriz Jamie-Lynn Sigler">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Jamie-Lynn Sigler</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Jamie-Lynn_Sigler_@_HBO_Post-Emmys_Party.jpg" target="_blank" rel="noopener">Kristin Dos Santos</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Aida Turturro"
+                  data-epigrafe="Janice Soprano, la hermana que siempre vuelve."
+                  data-credito="Foto: David Shankbone · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/turturro.jpg" loading="lazy" alt="Retrato de la actriz Aida Turturro">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Aida Turturro</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Aida_Turturro_2012_Shankbone.JPG" target="_blank" rel="noopener">David Shankbone</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Steve Buscemi"
+                  data-epigrafe="Tony Blundetto. También dirigió cuatro episodios de la serie."
+                  data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
+            <img src="img/galeria/buscemi.jpg" loading="lazy" alt="Steve Buscemi en el evento por el aniversario de Los Soprano, 2024">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Steve Buscemi</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Steve_Buscemi_2024_Sopranos_anniversary_(cropped).png" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="Dominic Chianese"
+                  data-epigrafe="El tío Junior. Además es cantante y guitarrista."
+                  data-credito="Foto: Mike L Photo's · CC BY 2.0 · Wikimedia Commons">
+            <img src="img/galeria/chianese.jpg" loading="lazy" alt="Retrato del actor Dominic Chianese">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Dominic Chianese</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Dominic_Chianese_(cropped).jpg" target="_blank" rel="noopener">Mike L Photo's</a> · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="elenco">
+          <button class="galeria__boton galeria__boton--retrato"
+                  data-titulo="David Chase"
+                  data-epigrafe="El creador de la serie, en los Premios Peabody del año 2000."
+                  data-credito="Foto: Peabody Awards · CC BY 2.0 · Wikimedia Commons">
+            <img src="img/galeria/chase.jpg" loading="lazy" alt="David Chase en los Premios Peabody de 2000">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">David Chase</span>
+              <span class="galeria__cat">Elenco</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:David_Chase,_May_2000.jpg" target="_blank" rel="noopener">Peabody Awards</a> · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="locaciones">
+          <button class="galeria__boton"
+                  data-titulo="Satin Dolls, el Bada Bing"
+                  data-epigrafe="El club de la Ruta 17, en Lodi, que hizo de Bada Bing durante toda la serie."
+                  data-credito="Foto: Christian David · CC BY-SA 4.0 · Wikimedia Commons">
+            <img src="img/galeria/satin-dolls.jpg" loading="lazy" alt="Frente del local Satin Dolls sobre la Ruta 17 en Lodi, Nueva Jersey">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Satin Dolls, el Bada Bing</span>
+              <span class="galeria__cat">Locaciones</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Satin_Dolls,_Route_17,_Lodi,_New_Jersey.jpg" target="_blank" rel="noopener">Christian David</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="locaciones">
+          <button class="galeria__boton"
+                  data-titulo="La casa de los Soprano"
+                  data-epigrafe="14 Aspen Drive, North Caldwell: la casa real que se ve en la serie."
+                  data-credito="Foto: Christian David · CC BY-SA 4.0 · Wikimedia Commons">
+            <img src="img/galeria/casa.jpg" loading="lazy" alt="La casa de 14 Aspen Drive, en North Caldwell, usada como residencia de los Soprano">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">La casa de los Soprano</span>
+              <span class="galeria__cat">Locaciones</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Sopranos_residence,_14_Aspen_Drive,_North_Caldwell,_New_Jersey.jpg" target="_blank" rel="noopener">Christian David</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="locaciones">
+          <button class="galeria__boton"
+                  data-titulo="Holsten’s"
+                  data-epigrafe="La heladería de Bloomfield donde se filmó la escena final."
+                  data-credito="Foto: Christian David · CC BY-SA 4.0 · Wikimedia Commons">
+            <img src="img/galeria/holstens.jpg" loading="lazy" alt="Frente de Holsten's, en Bloomfield, Nueva Jersey">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Holsten’s</span>
+              <span class="galeria__cat">Locaciones</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Holsten%27s,_1063_Broad_Street,_Bloomfield,_New_Jersey.jpg" target="_blank" rel="noopener">Christian David</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="locaciones">
+          <button class="galeria__boton"
+                  data-titulo="Satriale’s, el local real"
+                  data-epigrafe="La esquina de Kearny donde se construyó la carnicería para la ficción."
+                  data-credito="Foto: Stephen Hanafin · CC BY-SA 2.0 · Wikimedia Commons">
+            <img src="img/galeria/satriales-real.jpg" loading="lazy" alt="Fachada del local usado como Satriale's Pork Store en Kearny, Nueva Jersey">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Satriale’s, el local real</span>
+              <span class="galeria__cat">Locaciones</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:The_Sopranos_-_Satriale%27s_Pork_Store.jpg" target="_blank" rel="noopener">Stephen Hanafin</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="locaciones">
+          <button class="galeria__boton"
+                  data-titulo="New Jersey Turnpike"
+                  data-epigrafe="La autopista de los títulos de apertura, vista desde el auto."
+                  data-credito="Foto: Doug Kerr · CC BY-SA 2.0 · Wikimedia Commons">
+            <img src="img/galeria/turnpike.jpg" loading="lazy" alt="Vista de la autopista New Jersey Turnpike desde un auto en movimiento">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">New Jersey Turnpike</span>
+              <span class="galeria__cat">Locaciones</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:New_Jersey_Turnpike_(6334462088).jpg" target="_blank" rel="noopener">Doug Kerr</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
+        </li>
+
+        <li class="galeria__item" data-categoria="locaciones">
+          <button class="galeria__boton"
+                  data-titulo="Newark"
+                  data-epigrafe="La ciudad que Tony deja atrás cada vez que cruza hacia los suburbios."
+                  data-credito="Foto: King of Hearts · CC BY-SA 4.0 · Wikimedia Commons">
+            <img src="img/galeria/newark.jpg" loading="lazy" alt="Vista del skyline de Newark, Nueva Jersey">
+            <span class="galeria__overlay">
+              <span class="galeria__titulo">Newark</span>
+              <span class="galeria__cat">Locaciones</span>
+            </span>
+          </button>
+          <p class="galeria__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Newark_October_2016_001.jpg" target="_blank" rel="noopener">King of Hearts</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+        </li>
+
+      </ul>
+
+      <!-- Nota de créditos -->
+      <p class="galeria__nota">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>
+        Todas las imágenes son de uso libre y provienen de
+        <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>,
+        con la atribución que indica cada una. Los fotogramas de la serie fueron publicados por
+        la propia <strong>HBO</strong> bajo licencia
+        <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>;
+        las fotos de los actores y de las locaciones, por sus autores bajo Creative Commons.
+        </span>
+      </p>
+    </section>
+  </main>
+
+  <!-- ===== VISOR AMPLIADO ===== -->
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitulo" hidden>
+    <button class="visor__cerrar" id="visorCerrar" aria-label="Cerrar visor">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <button class="visor__nav visor__nav--anterior" id="visorAnterior" aria-label="Imagen anterior">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <figure class="visor__figura">
+      <img id="visorImagen" src="" alt="">
+      <figcaption class="visor__pie">
+        <h2 class="visor__titulo" id="visorTitulo"></h2>
+        <p class="visor__epigrafe" id="visorEpigrafe"></p>
+        <p class="visor__credito" id="visorCredito"></p>
+      </figcaption>
+    </figure>
+
+    <button class="visor__nav visor__nav--siguiente" id="visorSiguiente" aria-label="Imagen siguiente">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- ===== PIE DE SITIO ===== -->
+  <footer class="pie">
+    <div class="contenedor pie__inner">
+      <div class="pie__legales">
+        <p class="pie__copy">&copy; <span id="anio">2026</span> Los Soprano &mdash; Sitio de fans sin fines de lucro.</p>
+        <p class="pie__aviso">
+          Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
+          Este sitio no está afiliado ni patrocinado por HBO.
+        </p>
+        <ul class="pie__enlaces">
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="pie__redes">
+        <p class="pie__redes-titulo">Seguinos</p>
+        <ul class="redes">
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/galeria.js"></script>
+</body>
+</html>
