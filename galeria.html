@@ -39,7 +39,7 @@
         <ul class="nav__lista">
           <li><a class="nav__link" href="index.html">Inicio</a></li>
           <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
-          <li><a class="nav__link nav__link--activo" href="galeria.html">Galería</a></li>
+          <li><a class="nav__link nav__link--activo" aria-current="page" href="galeria.html">Galería</a></li>
           <li><a class="nav__link" href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
@@ -51,7 +51,7 @@
 
     <div class="contenedor">
       <div class="encabezado-pagina">
-        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> Galería</nav>
+        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> <span aria-current="page">Galería</span></nav>
         <h1 class="encabezado-pagina__titulo">Galería</h1>
         <span class="hero__linea" aria-hidden="true"></span>
         <p class="encabezado-pagina__bajada">
@@ -83,7 +83,7 @@
                   data-titulo="Tony Soprano"
                   data-epigrafe="Jefe de la familia DiMeo y, dos veces por semana, paciente de la doctora Melfi."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
-            <img src="img/galeria/p-tony.jpg" loading="lazy" alt="Tony Soprano en un fotograma de la serie">
+            <img src="img/galeria/p-tony.jpg" loading="eager" fetchpriority="high" alt="Tony Soprano en un fotograma de la serie">
             <span class="galeria__overlay">
               <span class="galeria__titulo">Tony Soprano</span>
               <span class="galeria__cat">Personajes</span>
@@ -97,7 +97,7 @@
                   data-titulo="Corrado “Junior” Soprano"
                   data-epigrafe="El tío de Tony: jefe nominal de la familia y rival permanente."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
-            <img src="img/galeria/p-junior.jpg" loading="lazy" alt="Junior Soprano en un fotograma de la serie">
+            <img src="img/galeria/p-junior.jpg" loading="eager" fetchpriority="high" alt="Junior Soprano en un fotograma de la serie">
             <span class="galeria__overlay">
               <span class="galeria__titulo">Corrado “Junior” Soprano</span>
               <span class="galeria__cat">Personajes</span>
@@ -111,7 +111,7 @@
                   data-titulo="Christopher Moltisanti"
                   data-epigrafe="El ahijado de Tony, que sueña con escribir guiones de cine."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
-            <img src="img/galeria/p-christopher.jpg" loading="lazy" alt="Christopher Moltisanti en un fotograma de la serie">
+            <img src="img/galeria/p-christopher.jpg" loading="eager" fetchpriority="high" alt="Christopher Moltisanti en un fotograma de la serie">
             <span class="galeria__overlay">
               <span class="galeria__titulo">Christopher Moltisanti</span>
               <span class="galeria__cat">Personajes</span>

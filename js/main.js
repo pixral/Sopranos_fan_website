@@ -61,7 +61,42 @@ document.addEventListener("DOMContentLoaded", function () {
   var anio = document.getElementById("anio");
   if (anio) anio.textContent = new Date().getFullYear();
 
-  /* ---------- 4. Aviso en los enlaces que abren una pestaña nueva ----------
+  /* ---------- 4. Pausar el montaje de la portada ----------
+     Contenido en movimiento que arranca solo y se repite: hace falta poder
+     detenerlo. La preferencia se recuerda para las próximas visitas. */
+  var ctrl    = document.getElementById("montajeControl");
+  var montaje = document.querySelector(".montaje");
+
+  if (ctrl && montaje) {
+    var CLAVE = "montaje-pausado";
+
+    /* localStorage puede fallar (modo privado, cookies bloqueadas) */
+    function leerPreferencia() {
+      try { return localStorage.getItem(CLAVE) === "1"; } catch (e) { return false; }
+    }
+
+    function guardarPreferencia(pausado) {
+      try { localStorage.setItem(CLAVE, pausado ? "1" : "0"); } catch (e) { /* se ignora */ }
+    }
+
+    function aplicar(pausado, guardar) {
+      montaje.classList.toggle("montaje--pausado", pausado);
+      ctrl.setAttribute("aria-pressed", pausado);
+      ctrl.querySelector(".montaje-control__texto").textContent =
+        pausado ? "Reanudar el fondo" : "Pausar el fondo";
+      ctrl.querySelector("i").className =
+        pausado ? "fa-solid fa-play" : "fa-solid fa-pause";
+      if (guardar) guardarPreferencia(pausado);
+    }
+
+    aplicar(leerPreferencia(), false);
+
+    ctrl.addEventListener("click", function () {
+      aplicar(!montaje.classList.contains("montaje--pausado"), true);
+    });
+  }
+
+  /* ---------- 5. Aviso en los enlaces que abren una pestaña nueva ----------
      El atributo target="_blank" no lo anuncia ningún lector de pantalla. Se
      agrega por script para no repetir el texto en las decenas de créditos. */
   document.querySelectorAll('a[target="_blank"]').forEach(function (enlace) {

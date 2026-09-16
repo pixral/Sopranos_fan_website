@@ -12,12 +12,12 @@
 }
 
 .filtro {
-  padding: 11px 24px;
+  padding: 11px var(--e-5);
   background: none;
   border: 1px solid var(--borde);
   border-radius: var(--radio-pill);
   font-family: var(--fuente-texto);
-  font-size: .74rem;
+  font-size: var(--t-xs);
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--texto-tenue);
@@ -36,7 +36,7 @@
 
 .galeria__contador {
   text-align: center;
-  font-size: .75rem;
+  font-size: var(--t-xs);
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--texto-tenue);
@@ -94,8 +94,8 @@
 
 /* Crédito de cada imagen */
 .galeria__credito {
-  margin-top: 8px;
-  font-size: .7rem;
+  margin-top: var(--e-2);
+  font-size: var(--t-xs);
   letter-spacing: .04em;
   color: var(--texto-debil);
 }
@@ -112,11 +112,11 @@
 .galeria__nota {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--e-3);
   max-width: 90ch;
   margin: 40px auto 0;
   padding: 18px 20px;
-  font-size: .82rem;
+  font-size: var(--t-sm);
   color: var(--texto-tenue);
   background-color: var(--superficie);
   border: 1px solid var(--borde);
@@ -135,8 +135,8 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 40px 18px 16px;
+  gap: var(--e-1);
+  padding: 40px 18px var(--e-4);
   text-align: left;
   background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, 0));
 }
@@ -149,7 +149,7 @@
 }
 
 .galeria__cat {
-  font-size: .68rem;
+  font-size: var(--t-xs);
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--dorado);
@@ -169,8 +169,8 @@
   align-items: safe center;
   justify-content: center;
   overflow-y: auto;
-  gap: 12px;
-  padding: 24px;
+  gap: var(--e-3);
+  padding: var(--e-5);
   background-color: rgba(5, 5, 6, .95);
   backdrop-filter: blur(4px);
   opacity: 0;
@@ -218,13 +218,13 @@
 }
 
 .visor__epigrafe {
-  font-size: .9rem;
+  font-size: var(--t-md);
   color: var(--texto-tenue);
 }
 
 .visor__credito {
   margin-top: 10px;
-  font-size: .74rem;
+  font-size: var(--t-xs);
   letter-spacing: .04em;
   color: var(--texto-debil);
 }
@@ -262,6 +262,12 @@
   right: 22px;
 }
 
+/* Mismo criterio que en estilos.css: sin puntero real, sin levantar ni escalar */
+@media (hover: none) {
+  .galeria__boton:hover { transform: none; }
+  .galeria__boton:hover img { transform: none; filter: saturate(.85); }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 992px) {
   .galeria__item { flex: 0 1 calc(50% - 10px); }
@@ -272,13 +278,13 @@
   .filtro {
     min-height: var(--toque-min);
     padding: var(--e-2) var(--e-4);
-    font-size: .7rem;
+    font-size: var(--t-xs);
   }
 
-  .visor { padding: 16px; gap: 8px; }
+  .visor { padding: var(--e-4); gap: var(--e-2); }
   .visor__figura img { max-height: 52vh; }
   .visor__cerrar,
-  .visor__nav { width: var(--toque-min); height: var(--toque-min); font-size: .95rem; }
+  .visor__nav { width: var(--toque-min); height: var(--toque-min); font-size: var(--t-lg); }
   .visor__cerrar { top: 14px; right: 14px; }
   .visor__titulo { font-size: 1.1rem; }
 }

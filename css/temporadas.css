@@ -6,7 +6,7 @@
 .stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: var(--e-4);
   margin-top: 34px;
 }
 
@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 22px 16px;
+  gap: var(--e-1);
+  padding: 22px var(--e-4);
   background-color: var(--superficie);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
@@ -31,7 +31,7 @@
 }
 
 .stat__texto {
-  font-size: .72rem;
+  font-size: var(--t-xs);
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--texto-tenue);
@@ -57,7 +57,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  padding-bottom: 16px;
+  padding-bottom: var(--e-4);
   border-bottom: 1px solid var(--borde);
 }
 
@@ -87,7 +87,7 @@
 }
 
 .temporada__meta {
-  font-size: .76rem;
+  font-size: var(--t-xs);
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--dorado);
@@ -105,13 +105,13 @@
 .temporada__datos {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--e-2);
   margin-top: auto;
 }
 
 .chip {
   padding: 6px 13px;
-  font-size: .7rem;
+  font-size: var(--t-xs);
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--texto-tenue);
@@ -130,11 +130,11 @@
   }
 
   .temporada__numero { width: 54px; height: 54px; font-size: 1.3rem; }
-  .stat { flex: 1 1 140px; padding: 18px 12px; }
+  .stat { flex: 1 1 140px; padding: 18px var(--e-3); }
   .stat__numero { font-size: 1.9rem; }
 }
 
 @media (max-width: 480px) {
-  .stats { gap: 12px; }
+  .stats { gap: var(--e-3); }
   .stat { flex: 1 1 calc(50% - 6px); }
 }

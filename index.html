@@ -42,7 +42,7 @@
 
       <nav class="nav" id="menu" aria-label="Principal">
         <ul class="nav__lista">
-          <li><a class="nav__link nav__link--activo" href="index.html">Inicio</a></li>
+          <li><a class="nav__link nav__link--activo" aria-current="page" href="index.html">Inicio</a></li>
           <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
           <li><a class="nav__link" href="galeria.html">Galería</a></li>
           <li><a class="nav__link" href="contacto.html">Contacto</a></li>
@@ -65,6 +65,12 @@
       <img class="montaje__foto" src="img/montaje/f6-furio.jpg" alt="">
       <span class="montaje__velo"></span>
     </div>
+
+    <!-- El montaje arranca solo y no se detiene: hace falta poder pausarlo -->
+    <button class="montaje-control" id="montajeControl" aria-pressed="false">
+      <i class="fa-solid fa-pause" aria-hidden="true"></i>
+      <span class="montaje-control__texto">Pausar el fondo</span>
+    </button>
 
     <div class="contenedor">
       <section class="hero">
@@ -101,7 +107,7 @@
         <!-- Columna derecha: imagen representativa -->
         <div class="hero__col hero__col--imagen">
           <figure class="hero__figura">
-            <img src="img/galeria/gandolfini.jpg"
+            <img src="img/galeria/gandolfini.jpg" width="726" height="933"
                  alt="James Gandolfini, intérprete de Tony Soprano, en el Festival Internacional de Cine de Toronto de 2011">
             <figcaption>
               James Gandolfini fue Tony Soprano durante seis temporadas.
