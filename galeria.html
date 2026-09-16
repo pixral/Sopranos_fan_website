@@ -6,6 +6,14 @@
   <title>Galería | Los Soprano</title>
   <meta name="description" content="Galería del elenco y de las locaciones reales donde se filmó Los Soprano.">
 
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Los Soprano">
+  <meta property="og:title" content="Galería | Los Soprano">
+  <meta property="og:description" content="Galería del elenco y de las locaciones reales donde se filmó Los Soprano.">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +24,8 @@
 </head>
 <body>
 
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
   <!-- ===== CABECERA ===== -->
   <header class="cabecera" id="cabecera">
     <div class="contenedor cabecera__inner">
@@ -25,7 +35,7 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav" id="menu">
+      <nav class="nav" id="menu" aria-label="Principal">
         <ul class="nav__lista">
           <li><a class="nav__link" href="index.html">Inicio</a></li>
           <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
@@ -37,11 +47,11 @@
   </header>
 
   <!-- ===== CONTENIDO ===== -->
-  <main class="principal">
+  <main class="principal" id="contenido" tabindex="-1">
 
     <div class="contenedor">
       <div class="encabezado-pagina">
-        <p class="migas"><a href="index.html">Inicio</a> <span>/</span> Galería</p>
+        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> Galería</nav>
         <h1 class="encabezado-pagina__titulo">Galería</h1>
         <span class="hero__linea" aria-hidden="true"></span>
         <p class="encabezado-pagina__bajada">
@@ -618,7 +628,7 @@
 
       <!-- Nota de créditos -->
       <p class="galeria__nota">
-        <i class="fa-solid fa-circle-info"></i>
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
         <span>
         Todas las imágenes son de uso libre y provienen de
         <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>,
@@ -634,10 +644,10 @@
   <!-- ===== VISOR AMPLIADO ===== -->
   <div class="visor" id="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitulo" hidden>
     <button class="visor__cerrar" id="visorCerrar" aria-label="Cerrar visor">
-      <i class="fa-solid fa-xmark"></i>
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
     </button>
     <button class="visor__nav visor__nav--anterior" id="visorAnterior" aria-label="Imagen anterior">
-      <i class="fa-solid fa-chevron-left"></i>
+      <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
     </button>
 
     <figure class="visor__figura">
@@ -650,7 +660,7 @@
     </figure>
 
     <button class="visor__nav visor__nav--siguiente" id="visorSiguiente" aria-label="Imagen siguiente">
-      <i class="fa-solid fa-chevron-right"></i>
+      <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
     </button>
   </div>
 
@@ -663,7 +673,7 @@
           Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
           Este sitio no está afiliado ni patrocinado por HBO.
         </p>
-        <ul class="pie__enlaces">
+        <ul class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -672,10 +682,10 @@
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
         <ul class="redes">
-          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
         </ul>
       </div>
     </div>

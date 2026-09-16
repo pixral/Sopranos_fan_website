@@ -117,7 +117,7 @@
   color: var(--texto-tenue);
   background-color: var(--negro);
   border: 1px solid var(--borde);
-  border-radius: 999px;
+  border-radius: var(--radio-pill);
 }
 
 .temporada:hover .chip { border-color: rgba(179, 18, 43, .4); }

@@ -5,22 +5,56 @@
 
 /* ---------- 1. Variables ---------- */
 :root {
+  /* --- Superficies --- */
   --negro:        #0b0b0c;
   --negro-suave:  #131315;
   --superficie:   #1a1a1d;
   --borde:        #2a2a2e;
-  --rojo:         #b3122b;
-  --rojo-claro:   #e01c3a;
-  --dorado:       #c9a227;
-  --texto:        #e9e6e1;
-  --texto-tenue:  #a09b93;
+  --separador:    #5f5f66;  /* glifos decorativos: visibles, sin competir */
 
+  /* --- Acentos --- */
+  --rojo:         #b3122b;  /* fondos y bordes */
+  --rojo-claro:   #e01c3a;  /* iconos, fondos y texto grande */
+  --rojo-texto:   #ef4d61;  /* el mismo rojo aclarado, para texto chico */
+  --dorado:       #c9a227;
+
+  /* --- Texto. Contrastes medidos sobre --negro / --superficie --- */
+  --texto:        #e9e6e1;  /* 15.8:1 */
+  --texto-tenue:  #a09b93;  /*  7.1:1 */
+  --texto-debil:  #8a837a;  /*  4.6:1 - créditos, ayudas y placeholders */
+
+  /* --- Tipografía --- */
   --fuente-titulo: "Cinzel", Georgia, "Times New Roman", serif;
   --fuente-texto:  "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
 
+  /* Escala tipográfica: reemplaza los quince tamaños sueltos que había */
+  --t-xs:   .72rem;   /* etiquetas, categorías, créditos */
+  --t-sm:   .8rem;    /* botones, metadatos, pie */
+  --t-md:   .88rem;   /* texto secundario */
+  --t-lg:   .95rem;   /* texto de formulario y destacados */
+
+  /* --- Espaciado --- */
+  --e-1:  4px;
+  --e-2:  8px;
+  --e-3: 12px;
+  --e-4: 16px;
+  --e-5: 24px;
+  --e-6: 32px;
+  --e-7: 48px;
+  --e-8: 64px;
+
+  /* --- Sombras --- */
+  --sombra-baja:  0 6px 24px rgba(0, 0, 0, .45);
+  --sombra-media: 0 18px 40px rgba(0, 0, 0, .6);
+  --sombra-alta:  0 24px 60px rgba(0, 0, 0, .7);
+
+  /* --- Varios --- */
   --ancho-max: 1200px;
   --radio: 4px;
+  --radio-pill: 999px;
   --transicion: .3s ease;
+  --toque-min: 44px;   /* área táctil mínima en pantallas chicas */
+  --elevacion: -3px;   /* desplazamiento único para todos los hover */
 }
 
 /* ---------- 2. Reset ---------- */
@@ -29,6 +63,21 @@
 *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+
+/* Respeta a quien pidió menos movimiento en su sistema operativo:
+   anula transiciones, animaciones y el scroll suave en todo el sitio. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 body {
   background-color: var(--negro);
@@ -57,8 +106,39 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   width: 100%;
   max-width: var(--ancho-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--e-5);
 }
+
+/* ---------- Saltar al contenido ----------
+   Primer elemento tabulable de cada página. Invisible hasta recibir el foco:
+   permite a quien navega con teclado saltear la cabecera y el menú. */
+.saltar {
+  /* fixed y no absolute: si estuviera anclado al documento, con la página
+     scrolleada aparecería fuera de la pantalla. */
+  position: fixed;
+  top: var(--e-2);
+  left: 50%;
+  z-index: 300;
+  transform: translate(-50%, -200%);
+  padding: var(--e-3) var(--e-5);
+  background-color: var(--rojo);
+  border-radius: var(--radio);
+  color: #fff;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: transform var(--transicion);
+}
+
+.saltar:focus {
+  transform: translate(-50%, 0);
+  outline: 2px solid var(--dorado);
+  outline-offset: 3px;
+}
+
+/* El destino del salto no debe mostrar contorno al recibir el foco por script */
+.principal:focus { outline: none; }
 
 /* ==========================================================================
    4. CABECERA
@@ -75,7 +155,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 
 .cabecera--scroll {
   background-color: rgba(11, 11, 12, .97);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, .6);
+  box-shadow: var(--sombra-baja);
 }
 
 /* Flexbox: logo a la izquierda, menú a la derecha */
@@ -85,6 +165,13 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   align-items: center;
   gap: 24px;
   min-height: 84px;
+}
+
+/* El logo es el enlace a Inicio: se le da altura táctil cómoda */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque-min);
 }
 
 .logo img { height: 42px; width: auto; }
@@ -191,7 +278,6 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   /* Desaturado y con un desenfoque leve: queda claro que es fondo */
   filter: grayscale(.3) saturate(.85) contrast(1.08) blur(1.2px);
   animation: montaje 36s infinite;
-  will-change: opacity, transform;
 }
 
 /* Cada foto arranca 6 s después de la anterior */
@@ -296,7 +382,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   border-radius: var(--radio);
   overflow: hidden;
   background-color: var(--negro-suave);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, .7);
+  box-shadow: var(--sombra-alta);
 }
 
 .hero__figura img {
@@ -320,7 +406,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   display: block;
   margin-top: 5px;
   font-size: .7rem;
-  color: #6d675f;
+  color: var(--texto-debil);
 }
 
 .hero__credito a {
@@ -329,7 +415,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   text-underline-offset: 2px;
 }
 
-.hero__credito a:hover { color: var(--rojo-claro); }
+.hero__credito a:hover { color: var(--rojo-texto); }
 
 /* ==========================================================================
    6. PIE DE SITIO
@@ -377,7 +463,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   color: var(--texto-tenue);
 }
 
-.pie__enlaces a:hover { color: var(--rojo-claro); }
+.pie__enlaces a:hover { color: var(--rojo-texto); }
 
 /* --- Redes sociales --- */
 .pie__redes { flex: 0 1 auto; }
@@ -399,8 +485,8 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: var(--toque-min);
+  height: var(--toque-min);
   border: 1px solid var(--borde);
   border-radius: 50%;
   font-size: 1rem;
@@ -414,7 +500,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   color: #fff;
   background-color: var(--rojo);
   border-color: var(--rojo);
-  transform: translateY(-3px);
+  transform: translateY(var(--elevacion));
 }
 
 /* Accesibilidad: foco visible en todo el sitio */
@@ -467,7 +553,7 @@ button:focus-visible {
 
   .nav__link { display: block; padding: 15px 0; }
   .nav__link::after { display: none; }
-  .nav__link--activo { color: var(--rojo-claro); }
+  .nav__link--activo { color: var(--rojo-texto); }
 
   .principal { padding: 48px 0 60px; }
 
@@ -499,7 +585,14 @@ button:focus-visible {
   }
 
   .pie__aviso { margin-inline: auto; }
-  .pie__enlaces { justify-content: center; }
+  .pie__enlaces { justify-content: center; gap: 0 var(--e-5); }
+
+  /* Cada enlace del pie llega al mínimo táctil recomendado */
+  .pie__enlaces a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--toque-min);
+  }
 }
 
 /* --- Móvil chico --- */
@@ -528,8 +621,16 @@ button:focus-visible {
   margin-bottom: 16px;
 }
 
-.migas a:hover { color: var(--rojo-claro); }
-.migas span { color: var(--borde); }
+/* Los enlaces de las migas son navegación suelta, no texto en línea:
+   necesitan el mínimo de 24 px de alto que pide la WCAG 2.2. */
+.migas a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+.migas a:hover { color: var(--rojo-texto); }
+.migas span { color: var(--separador); }
 
 .encabezado-pagina__titulo {
   font-family: var(--fuente-titulo);
@@ -586,7 +687,11 @@ button:focus-visible {
               color var(--transicion), transform var(--transicion);
 }
 
-.boton:hover { border-color: var(--rojo); color: #fff; transform: translateY(-2px); }
+.boton:hover {
+  border-color: var(--rojo);
+  color: #fff;
+  transform: translateY(var(--elevacion));
+}
 
 .boton--primario {
   background-color: var(--rojo);
@@ -607,8 +712,8 @@ button:focus-visible {
 
 .tarjeta:hover {
   border-color: rgba(179, 18, 43, .55);
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .6);
+  transform: translateY(var(--elevacion));
+  box-shadow: var(--sombra-media);
 }
 
 /* --- Utilidades --- */

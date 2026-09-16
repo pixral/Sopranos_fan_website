@@ -15,7 +15,7 @@
   padding: 11px 24px;
   background: none;
   border: 1px solid var(--borde);
-  border-radius: 999px;
+  border-radius: var(--radio-pill);
   font-family: var(--fuente-texto);
   font-size: .74rem;
   letter-spacing: .16em;
@@ -74,8 +74,8 @@
 .galeria__boton:hover,
 .galeria__boton:focus-visible {
   border-color: rgba(179, 18, 43, .6);
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .65);
+  transform: translateY(var(--elevacion));
+  box-shadow: var(--sombra-media);
 }
 
 .galeria__boton img {
@@ -97,7 +97,7 @@
   margin-top: 8px;
   font-size: .7rem;
   letter-spacing: .04em;
-  color: #6d675f;
+  color: var(--texto-debil);
 }
 
 .galeria__credito a {
@@ -106,7 +106,7 @@
   text-underline-offset: 2px;
 }
 
-.galeria__credito a:hover { color: var(--rojo-claro); }
+.galeria__credito a:hover { color: var(--rojo-texto); }
 
 /* Nota general de créditos */
 .galeria__nota {
@@ -125,7 +125,7 @@
 
 .galeria__nota i { color: var(--dorado); margin-top: 3px; }
 .galeria__nota a { color: var(--dorado); text-decoration: underline; text-underline-offset: 3px; }
-.galeria__nota a:hover { color: var(--rojo-claro); }
+.galeria__nota a:hover { color: var(--rojo-texto); }
 
 /* Capa con el texto */
 .galeria__overlay {
@@ -164,7 +164,11 @@
   z-index: 200;
   display: flex;
   align-items: center;
+  /* `safe center` evita que, en pantallas bajas, la imagen se recorte por
+     arriba y quede fuera de alcance al no poder scrollear hacia el inicio. */
+  align-items: safe center;
   justify-content: center;
+  overflow-y: auto;
   gap: 12px;
   padding: 24px;
   background-color: rgba(5, 5, 6, .95);
@@ -222,7 +226,7 @@
   margin-top: 10px;
   font-size: .74rem;
   letter-spacing: .04em;
-  color: #6d675f;
+  color: var(--texto-debil);
 }
 
 /* Botones del visor */
@@ -264,12 +268,17 @@
 }
 
 @media (max-width: 768px) {
-  .filtro { padding: 9px 18px; font-size: .7rem; }
+  /* Los filtros mantienen el mínimo táctil aunque baje la tipografía */
+  .filtro {
+    min-height: var(--toque-min);
+    padding: var(--e-2) var(--e-4);
+    font-size: .7rem;
+  }
 
   .visor { padding: 16px; gap: 8px; }
   .visor__figura img { max-height: 52vh; }
   .visor__cerrar,
-  .visor__nav { width: 40px; height: 40px; font-size: .95rem; }
+  .visor__nav { width: var(--toque-min); height: var(--toque-min); font-size: .95rem; }
   .visor__cerrar { top: 14px; right: 14px; }
   .visor__titulo { font-size: 1.1rem; }
 }

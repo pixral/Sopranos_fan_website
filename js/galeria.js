@@ -27,9 +27,17 @@ document.addEventListener("DOMContentLoaded", function () {
      1. FILTROS
      ====================================================================== */
   filtros.forEach(function (boton) {
+    /* aria-pressed comunica el estado del filtro a un lector de pantalla:
+       sin esto, "activo" es solo un color. */
+    boton.setAttribute("aria-pressed", boton.classList.contains("filtro--activo"));
+
     boton.addEventListener("click", function () {
-      filtros.forEach(function (b) { b.classList.remove("filtro--activo"); });
+      filtros.forEach(function (b) {
+        b.classList.remove("filtro--activo");
+        b.setAttribute("aria-pressed", "false");
+      });
       boton.classList.add("filtro--activo");
+      boton.setAttribute("aria-pressed", "true");
       filtrar(boton.dataset.filtro);
     });
   });
@@ -112,12 +120,40 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target === visor) cerrar();
   });
 
-  /* Teclado: Escape cierra, flechas navegan */
+  /* Teclado: Escape cierra, flechas navegan y el Tab queda atrapado dentro */
   document.addEventListener("keydown", function (e) {
     if (visor.hidden) return;
-    if (e.key === "Escape")     cerrar();
-    if (e.key === "ArrowLeft")  mover(-1);
-    if (e.key === "ArrowRight") mover(1);
+
+    if (e.key === "Escape")     { cerrar(); return; }
+    if (e.key === "ArrowLeft")  { mover(-1); return; }
+    if (e.key === "ArrowRight") { mover(1);  return; }
+    if (e.key === "Tab")        atraparFoco(e);
   });
+
+  /* El visor es un diálogo modal: el foco no puede escaparse a la página de
+     atrás, que está oculta para el mouse pero sigue siendo tabulable. */
+  function atraparFoco(e) {
+    var focoables = [btnCerrar, btnAnt, btnSig].filter(function (b) {
+      return !b.classList.contains("oculto");
+    });
+
+    var primero = focoables[0];
+    var ultimo  = focoables[focoables.length - 1];
+
+    /* Si el foco se fue fuera del visor, se lo trae de vuelta */
+    if (!visor.contains(document.activeElement)) {
+      e.preventDefault();
+      primero.focus();
+      return;
+    }
+
+    if (e.shiftKey && document.activeElement === primero) {
+      e.preventDefault();
+      ultimo.focus();
+    } else if (!e.shiftKey && document.activeElement === ultimo) {
+      e.preventDefault();
+      primero.focus();
+    }
+  }
 
 });
