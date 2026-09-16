@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function marcarError(campo, idError, texto) {
     campo.closest(".campo").classList.add("campo--error");
     document.getElementById(idError).innerHTML =
-      '<i class="fa-solid fa-circle-exclamation"></i> ' + texto;
+      '<i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> ' + texto;
     campo.setAttribute("aria-invalid", "true");
   }
 

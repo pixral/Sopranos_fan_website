@@ -13,3 +13,6 @@ Desktop.ini
 *.log
 *.tmp
 __pycache__/
+
+# Herramientas de Claude Code (no forman parte de la entrega)
+.claude/

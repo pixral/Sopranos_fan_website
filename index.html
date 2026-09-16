@@ -7,6 +7,14 @@
   <meta name="description" content="Sitio dedicado a Los Soprano: temporadas, galería y contacto. Todo sobre la serie que cambió la televisión.">
 
   <!-- Font Awesome -->
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Los Soprano">
+  <meta property="og:title" content="Los Soprano | Sitio oficial de fans">
+  <meta property="og:description" content="Sitio dedicado a Los Soprano: temporadas, galería y contacto. Todo sobre la serie que cambió la televisión.">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +25,8 @@
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
 
   <!-- ===== CABECERA ===== -->
   <header class="cabecera" id="cabecera">
@@ -30,9 +40,9 @@
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="nav" id="menu">
+      <nav class="nav" id="menu" aria-label="Principal">
         <ul class="nav__lista">
-          <li><a class="nav__link nav__link--activo" href="index.html">Inicio</a></li>
+          <li><a class="nav__link nav__link--activo" aria-current="page" href="index.html">Inicio</a></li>
           <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
           <li><a class="nav__link" href="galeria.html">Galería</a></li>
           <li><a class="nav__link" href="contacto.html">Contacto</a></li>
@@ -43,7 +53,7 @@
   </header>
 
   <!-- ===== CONTENIDO PRINCIPAL ===== -->
-  <main class="principal principal--inicio">
+  <main class="principal principal--inicio" id="contenido" tabindex="-1">
 
     <!-- Montaje de fondo: fotogramas que se van cortando entre sí (solo CSS) -->
     <div class="montaje" aria-hidden="true">
@@ -55,6 +65,12 @@
       <img class="montaje__foto" src="img/montaje/f6-furio.jpg" alt="">
       <span class="montaje__velo"></span>
     </div>
+
+    <!-- El montaje arranca solo y no se detiene: hace falta poder pausarlo -->
+    <button class="montaje-control" id="montajeControl" aria-pressed="false">
+      <i class="fa-solid fa-pause" aria-hidden="true"></i>
+      <span class="montaje-control__texto">Pausar el fondo</span>
+    </button>
 
     <div class="contenedor">
       <section class="hero">
@@ -91,7 +107,7 @@
         <!-- Columna derecha: imagen representativa -->
         <div class="hero__col hero__col--imagen">
           <figure class="hero__figura">
-            <img src="img/galeria/gandolfini.jpg"
+            <img src="img/galeria/gandolfini.jpg" width="726" height="933"
                  alt="James Gandolfini, intérprete de Tony Soprano, en el Festival Internacional de Cine de Toronto de 2011">
             <figcaption>
               James Gandolfini fue Tony Soprano durante seis temporadas.
@@ -120,7 +136,7 @@
           <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>
           vía <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>.
         </p>
-        <ul class="pie__enlaces">
+        <ul class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -130,10 +146,10 @@
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
         <ul class="redes">
-          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
         </ul>
       </div>
 

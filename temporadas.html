@@ -6,6 +6,14 @@
   <title>Temporadas | Los Soprano</title>
   <meta name="description" content="Las 6 temporadas y los 86 episodios de Los Soprano, temporada por temporada.">
 
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Los Soprano">
+  <meta property="og:title" content="Temporadas | Los Soprano">
+  <meta property="og:description" content="Las 6 temporadas y los 86 episodios de Los Soprano, temporada por temporada.">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +24,8 @@
 </head>
 <body>
 
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
   <!-- ===== CABECERA ===== -->
   <header class="cabecera" id="cabecera">
     <div class="contenedor cabecera__inner">
@@ -25,10 +35,10 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav" id="menu">
+      <nav class="nav" id="menu" aria-label="Principal">
         <ul class="nav__lista">
           <li><a class="nav__link" href="index.html">Inicio</a></li>
-          <li><a class="nav__link nav__link--activo" href="temporadas.html">Temporadas</a></li>
+          <li><a class="nav__link nav__link--activo" aria-current="page" href="temporadas.html">Temporadas</a></li>
           <li><a class="nav__link" href="galeria.html">Galería</a></li>
           <li><a class="nav__link" href="contacto.html">Contacto</a></li>
         </ul>
@@ -37,11 +47,11 @@
   </header>
 
   <!-- ===== CONTENIDO ===== -->
-  <main class="principal">
+  <main class="principal" id="contenido" tabindex="-1">
 
     <div class="contenedor">
       <div class="encabezado-pagina">
-        <p class="migas"><a href="index.html">Inicio</a> <span>/</span> Temporadas</p>
+        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> <span aria-current="page">Temporadas</span></nav>
         <h1 class="encabezado-pagina__titulo">Temporadas</h1>
         <span class="hero__linea" aria-hidden="true"></span>
         <p class="encabezado-pagina__bajada">
@@ -82,8 +92,8 @@
             </p>
             <ul class="temporada__datos">
               <li class="chip">Piloto</li>
-              <li class="chip">College</li>
-              <li class="chip">I Dream of Jeannie Cusamano</li>
+              <li class="chip" lang="en">College</li>
+              <li class="chip" lang="en">I Dream of Jeannie Cusamano</li>
             </ul>
           </div>
         </li>
@@ -106,7 +116,7 @@
             </p>
             <ul class="temporada__datos">
               <li class="chip">Big Pussy</li>
-              <li class="chip">Funhouse</li>
+              <li class="chip" lang="en">Funhouse</li>
               <li class="chip">El negocio de las acciones</li>
             </ul>
           </div>
@@ -129,8 +139,8 @@
               Meadow empieza la universidad y la distancia con la casa se agranda.
             </p>
             <ul class="temporada__datos">
-              <li class="chip">Employee of the Month</li>
-              <li class="chip">Pine Barrens</li>
+              <li class="chip" lang="en">Employee of the Month</li>
+              <li class="chip" lang="en">Pine Barrens</li>
               <li class="chip">Gloria Trillo</li>
             </ul>
           </div>
@@ -153,7 +163,7 @@
               con la pelea más devastadora de la serie.
             </p>
             <ul class="temporada__datos">
-              <li class="chip">Whitecaps</li>
+              <li class="chip" lang="en">Whitecaps</li>
               <li class="chip">Furio</li>
               <li class="chip">Pie-O-My</li>
             </ul>
@@ -177,7 +187,7 @@
               negocian los términos de una reconciliación.
             </p>
             <ul class="temporada__datos">
-              <li class="chip">Long Term Parking</li>
+              <li class="chip" lang="en">Long Term Parking</li>
               <li class="chip">Tony B.</li>
               <li class="chip">Johnny Sack</li>
             </ul>
@@ -199,12 +209,12 @@
               Tony en coma, viviendo la vida de otro hombre. Cuando despierta, el negocio
               ya se está desarmando: el caso de Vito, la guerra con Phil Leotardo y una
               familia que empieza a saber demasiado. Todo termina en un reservado de
-              Holsten&rsquo;s, con &ldquo;Don&rsquo;t Stop Believin&rsquo;&rdquo; sonando en la rocola.
+              Holsten&rsquo;s, con <span lang="en">&ldquo;Don&rsquo;t Stop Believin&rsquo;&rdquo;</span> sonando en la rocola.
             </p>
             <ul class="temporada__datos">
-              <li class="chip">Join the Club</li>
-              <li class="chip">Kennedy and Heidi</li>
-              <li class="chip">Made in America</li>
+              <li class="chip" lang="en">Join the Club</li>
+              <li class="chip" lang="en">Kennedy and Heidi</li>
+              <li class="chip" lang="en">Made in America</li>
             </ul>
           </div>
         </li>
@@ -222,7 +232,7 @@
           Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
           Este sitio no está afiliado ni patrocinado por HBO.
         </p>
-        <ul class="pie__enlaces">
+        <ul class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -231,10 +241,10 @@
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
         <ul class="redes">
-          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
         </ul>
       </div>
     </div>

@@ -5,22 +5,57 @@
 
 /* ---------- 1. Variables ---------- */
 :root {
+  /* --- Superficies --- */
   --negro:        #0b0b0c;
   --negro-suave:  #131315;
   --superficie:   #1a1a1d;
   --borde:        #2a2a2e;
-  --rojo:         #b3122b;
-  --rojo-claro:   #e01c3a;
-  --dorado:       #c9a227;
-  --texto:        #e9e6e1;
-  --texto-tenue:  #a09b93;
+  --separador:    #5f5f66;  /* glifos decorativos: visibles, sin competir */
 
+  /* --- Acentos --- */
+  --rojo:         #b3122b;  /* fondos y bordes */
+  --rojo-claro:   #e01c3a;  /* iconos, fondos y texto grande */
+  --rojo-texto:   #ef4d61;  /* el mismo rojo aclarado, para texto chico */
+  --dorado:       #c9a227;
+
+  /* --- Texto. Contrastes medidos sobre --negro / --superficie --- */
+  --texto:        #e9e6e1;  /* 15.8:1 */
+  --texto-tenue:  #a09b93;  /*  7.1:1 */
+  --texto-debil:  #8a837a;  /*  4.6:1 - créditos, ayudas y placeholders */
+
+  /* --- Tipografía --- */
   --fuente-titulo: "Cinzel", Georgia, "Times New Roman", serif;
   --fuente-texto:  "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
 
+  /* Escala tipográfica: reemplaza los quince tamaños sueltos que había */
+  --t-xs:   .75rem;   /* 12 px: el mínimo legible para texto chico */
+  --t-sm:   .8rem;    /* botones, metadatos, pie */
+  --t-md:   .9rem;    /* texto secundario */
+  --t-lg:   .95rem;   /* texto de formulario y destacados */
+
+  /* --- Espaciado --- */
+  --e-1:  4px;
+  --e-2:  8px;
+  --e-3: 12px;
+  --e-4: 16px;
+  --e-5: 24px;
+  --e-6: 32px;
+  --e-7: 48px;
+  --e-8: 64px;
+
+  /* --- Sombras --- */
+  --sombra-baja:  0 6px 24px rgba(0, 0, 0, .45);
+  --sombra-media: 0 18px 40px rgba(0, 0, 0, .6);
+  --sombra-alta:  0 24px 60px rgba(0, 0, 0, .7);
+
+  /* --- Varios --- */
   --ancho-max: 1200px;
   --radio: 4px;
+  --radio-pill: 999px;
   --transicion: .3s ease;
+  --toque-min: 44px;      /* área táctil mínima en pantallas chicas */
+  --alto-cabecera: 85px;  /* la cabecera es sticky: se descuenta al saltar */
+  --elevacion: -3px;   /* desplazamiento único para todos los hover */
 }
 
 /* ---------- 2. Reset ---------- */
@@ -28,7 +63,27 @@
 *::before,
 *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* La cabecera es sticky: sin esto, al tabular o saltar a un ancla el
+     elemento enfocado queda escondido detrás de ella (WCAG 2.2 AA). */
+  scroll-padding-top: calc(var(--alto-cabecera) + var(--e-2));
+}
+
+/* Respeta a quien pidió menos movimiento en su sistema operativo:
+   anula transiciones, animaciones y el scroll suave en todo el sitio. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 body {
   background-color: var(--negro);
@@ -52,13 +107,47 @@ img { max-width: 100%; display: block; }
 ul  { list-style: none; }
 a   { color: inherit; text-decoration: none; transition: color var(--transicion); }
 
+/* Elimina el retardo de ~300 ms que algunos móviles aplican al tocar */
+a, button, summary, input, select, textarea, label { touch-action: manipulation; }
+
 /* ---------- 3. Contenedor genérico ---------- */
 .contenedor {
   width: 100%;
   max-width: var(--ancho-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--e-5);
 }
+
+/* ---------- Saltar al contenido ----------
+   Primer elemento tabulable de cada página. Invisible hasta recibir el foco:
+   permite a quien navega con teclado saltear la cabecera y el menú. */
+.saltar {
+  /* fixed y no absolute: si estuviera anclado al documento, con la página
+     scrolleada aparecería fuera de la pantalla. */
+  position: fixed;
+  top: var(--e-2);
+  left: 50%;
+  z-index: 300;
+  transform: translate(-50%, -200%);
+  padding: var(--e-3) var(--e-5);
+  background-color: var(--rojo);
+  border-radius: var(--radio);
+  color: #fff;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: transform var(--transicion);
+}
+
+.saltar:focus {
+  transform: translate(-50%, 0);
+  outline: 2px solid var(--dorado);
+  outline-offset: 3px;
+}
+
+/* El destino del salto no debe mostrar contorno al recibir el foco por script */
+.principal:focus { outline: none; }
 
 /* ==========================================================================
    4. CABECERA
@@ -75,7 +164,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 
 .cabecera--scroll {
   background-color: rgba(11, 11, 12, .97);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, .6);
+  box-shadow: var(--sombra-baja);
 }
 
 /* Flexbox: logo a la izquierda, menú a la derecha */
@@ -83,8 +172,15 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: var(--e-5);
   min-height: 84px;
+}
+
+/* El logo es el enlace a Inicio: se le da altura táctil cómoda */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque-min);
 }
 
 .logo img { height: 42px; width: auto; }
@@ -98,7 +194,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 
 .nav__link {
   position: relative;
-  font-size: .82rem;
+  font-size: var(--t-sm);
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--texto-tenue);
@@ -191,7 +287,6 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   /* Desaturado y con un desenfoque leve: queda claro que es fondo */
   filter: grayscale(.3) saturate(.85) contrast(1.08) blur(1.2px);
   animation: montaje 36s infinite;
-  will-change: opacity, transform;
 }
 
 /* Cada foto arranca 6 s después de la anterior */
@@ -234,10 +329,68 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
       rgba(11, 11, 12, .90) 100%);
 }
 
-/* Si el sistema pide menos movimiento, se deja una sola imagen fija */
+/* --- Control de pausa ---
+   El montaje arranca solo, dura más de cinco segundos y se repite indefinidamente
+   al lado del texto, así que necesita una forma visible de detenerlo. */
+.montaje-control {
+  /* Arriba a la derecha: cae dentro de la franja donde se ve el montaje y
+     queda a la vista sin scrollear, sin pisar el texto del hero. */
+  position: absolute;
+  top: var(--e-4);
+  right: var(--e-5);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--toque-min);
+  padding: var(--e-2) var(--e-4);
+  background-color: rgba(11, 11, 12, .8);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pill);
+  font-family: var(--fuente-texto);
+  font-size: var(--t-xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+  cursor: pointer;
+  transition: color var(--transicion), border-color var(--transicion),
+              background-color var(--transicion);
+}
+
+.montaje-control:hover,
+.montaje-control:focus-visible {
+  color: var(--texto);
+  border-color: var(--texto-tenue);
+  background-color: rgba(11, 11, 12, .95);
+}
+
+.montaje--pausado .montaje__foto { animation-play-state: paused; }
+
+/* Si el sistema pide menos movimiento, se deja una sola imagen fija
+   y el botón de pausa deja de tener sentido. */
 @media (prefers-reduced-motion: reduce) {
   .montaje__foto { animation: none; }
   .montaje__foto:first-child { opacity: 1; transform: none; }
+  .montaje-control { display: none; }
+}
+
+@media (max-width: 768px) {
+  .montaje-control {
+    top: var(--e-3);
+    right: var(--e-4);
+    /* Solo icono: el mínimo táctil también tiene que valer en horizontal */
+    justify-content: center;
+    min-width: var(--toque-min);
+    padding: var(--e-2);
+  }
+  /* En pantallas chicas queda solo el icono, con nombre accesible */
+  .montaje-control__texto {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
 }
 
 .hero {
@@ -254,7 +407,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 
 /* --- Columna de texto --- */
 .hero__antetitulo {
-  font-size: .75rem;
+  font-size: var(--t-xs);
   letter-spacing: .3em;
   text-transform: uppercase;
   color: var(--dorado);
@@ -277,7 +430,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   width: 90px;
   height: 3px;
   background-color: var(--rojo);
-  margin: 24px 0 28px;
+  margin: var(--e-5) 0 28px;
 }
 
 .hero__col--texto p {
@@ -296,7 +449,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   border-radius: var(--radio);
   overflow: hidden;
   background-color: var(--negro-suave);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, .7);
+  box-shadow: var(--sombra-alta);
 }
 
 .hero__figura img {
@@ -309,7 +462,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 
 .hero__figura figcaption {
   padding: 14px 18px;
-  font-size: .82rem;
+  font-size: var(--t-sm);
   letter-spacing: .04em;
   color: var(--texto-tenue);
   background-color: var(--superficie);
@@ -319,8 +472,8 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 .hero__credito {
   display: block;
   margin-top: 5px;
-  font-size: .7rem;
-  color: #6d675f;
+  font-size: var(--t-xs);
+  color: var(--texto-debil);
 }
 
 .hero__credito a {
@@ -329,7 +482,7 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   text-underline-offset: 2px;
 }
 
-.hero__credito a:hover { color: var(--rojo-claro); }
+.hero__credito a:hover { color: var(--rojo-texto); }
 
 /* ==========================================================================
    6. PIE DE SITIO
@@ -346,19 +499,19 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: var(--e-6);
 }
 
 .pie__legales { flex: 1 1 460px; }
 
 .pie__copy {
-  font-size: .95rem;
+  font-size: var(--t-lg);
   color: var(--texto);
   margin-bottom: 6px;
 }
 
 .pie__aviso {
-  font-size: .8rem;
+  font-size: var(--t-sm);
   color: var(--texto-tenue);
   max-width: 62ch;
 }
@@ -371,19 +524,19 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 }
 
 .pie__enlaces a {
-  font-size: .78rem;
+  font-size: var(--t-sm);
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--texto-tenue);
 }
 
-.pie__enlaces a:hover { color: var(--rojo-claro); }
+.pie__enlaces a:hover { color: var(--rojo-texto); }
 
 /* --- Redes sociales --- */
 .pie__redes { flex: 0 1 auto; }
 
 .pie__redes-titulo {
-  font-size: .75rem;
+  font-size: var(--t-xs);
   letter-spacing: .24em;
   text-transform: uppercase;
   color: var(--texto-tenue);
@@ -392,15 +545,15 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
 
 .redes {
   display: flex;
-  gap: 12px;
+  gap: var(--e-3);
 }
 
 .redes__link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: var(--toque-min);
+  height: var(--toque-min);
   border: 1px solid var(--borde);
   border-radius: 50%;
   font-size: 1rem;
@@ -414,14 +567,35 @@ a   { color: inherit; text-decoration: none; transition: color var(--transicion)
   color: #fff;
   background-color: var(--rojo);
   border-color: var(--rojo);
-  transform: translateY(-3px);
+  transform: translateY(var(--elevacion));
 }
 
-/* Accesibilidad: foco visible en todo el sitio */
+/* Accesibilidad: foco visible en todo el sitio.
+   Antes la regla solo alcanzaba a <a> y <button>, así que los campos del
+   formulario y el <summary> de las preguntas frecuentes quedaban sin anillo. */
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
   outline: 2px solid var(--dorado);
   outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   En pantallas táctiles no hay puntero: el :hover se queda "pegado" después
+   de tocar y la tarjeta permanece levantada. Los efectos de desplazamiento y
+   escala se limitan a dispositivos con puntero real; los cambios de color se
+   mantienen porque no molestan.
+   -------------------------------------------------------------------------- */
+@media (hover: none) {
+  .tarjeta:hover,
+  .boton:hover,
+  .redes__link:hover { transform: none; }
+
+  .hero__figura:hover img { transform: none; }
 }
 
 /* ==========================================================================
@@ -439,6 +613,7 @@ button:focus-visible {
   .menu-toggle { display: flex; }
 
   .cabecera__inner { min-height: 70px; position: relative; }
+  :root { --alto-cabecera: 71px; }
   .logo img { height: 34px; }
 
   .nav {
@@ -459,7 +634,7 @@ button:focus-visible {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 8px 24px 20px;
+    padding: var(--e-2) var(--e-5) 20px;
   }
 
   .nav__lista li { border-bottom: 1px solid var(--borde); }
@@ -467,9 +642,9 @@ button:focus-visible {
 
   .nav__link { display: block; padding: 15px 0; }
   .nav__link::after { display: none; }
-  .nav__link--activo { color: var(--rojo-claro); }
+  .nav__link--activo { color: var(--rojo-texto); }
 
-  .principal { padding: 48px 0 60px; }
+  .principal { padding: var(--e-7) 0 60px; }
 
   /* Las 2 columnas pasan a una sola, con la imagen arriba */
   .hero {
@@ -499,7 +674,14 @@ button:focus-visible {
   }
 
   .pie__aviso { margin-inline: auto; }
-  .pie__enlaces { justify-content: center; }
+  .pie__enlaces { justify-content: center; gap: 0 var(--e-5); }
+
+  /* Cada enlace del pie llega al mínimo táctil recomendado */
+  .pie__enlaces a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--toque-min);
+  }
 }
 
 /* --- Móvil chico --- */
@@ -514,22 +696,30 @@ button:focus-visible {
    ========================================================================== */
 .encabezado-pagina {
   text-align: center;
-  padding: 64px 0 12px;
+  padding: var(--e-8) 0 var(--e-3);
 }
 
 .migas {
   display: flex;
   justify-content: center;
   gap: 10px;
-  font-size: .72rem;
+  font-size: var(--t-xs);
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--texto-tenue);
-  margin-bottom: 16px;
+  margin-bottom: var(--e-4);
 }
 
-.migas a:hover { color: var(--rojo-claro); }
-.migas span { color: var(--borde); }
+/* Los enlaces de las migas son navegación suelta, no texto en línea:
+   necesitan el mínimo de 24 px de alto que pide la WCAG 2.2. */
+.migas a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+.migas a:hover { color: var(--rojo-texto); }
+.migas span { color: var(--separador); }
 
 .encabezado-pagina__titulo {
   font-family: var(--fuente-titulo);
@@ -562,7 +752,7 @@ button:focus-visible {
   letter-spacing: .08em;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 24px;
+  margin-bottom: var(--e-5);
 }
 
 /* --- Botones --- */
@@ -576,7 +766,7 @@ button:focus-visible {
   border-radius: var(--radio);
   background: none;
   font-family: var(--fuente-texto);
-  font-size: .8rem;
+  font-size: var(--t-sm);
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -586,7 +776,11 @@ button:focus-visible {
               color var(--transicion), transform var(--transicion);
 }
 
-.boton:hover { border-color: var(--rojo); color: #fff; transform: translateY(-2px); }
+.boton:hover {
+  border-color: var(--rojo);
+  color: #fff;
+  transform: translateY(var(--elevacion));
+}
 
 .boton--primario {
   background-color: var(--rojo);
@@ -607,8 +801,8 @@ button:focus-visible {
 
 .tarjeta:hover {
   border-color: rgba(179, 18, 43, .55);
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .6);
+  transform: translateY(var(--elevacion));
+  box-shadow: var(--sombra-media);
 }
 
 /* --- Utilidades --- */
@@ -625,6 +819,6 @@ button:focus-visible {
 }
 
 @media (max-width: 768px) {
-  .encabezado-pagina { padding: 44px 0 8px; }
-  .seccion { padding-top: 32px; padding-bottom: 60px; }
+  .encabezado-pagina { padding: 44px 0 var(--e-2); }
+  .seccion { padding-top: var(--e-6); padding-bottom: 60px; }
 }

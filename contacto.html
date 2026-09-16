@@ -6,6 +6,14 @@
   <title>Contacto | Los Soprano</title>
   <meta name="description" content="Escribinos: sugerencias, correcciones y colaboraciones para el sitio de fans de Los Soprano.">
 
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Los Soprano">
+  <meta property="og:title" content="Contacto | Los Soprano">
+  <meta property="og:description" content="Escribinos: sugerencias, correcciones y colaboraciones para el sitio de fans de Los Soprano.">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +24,8 @@
 </head>
 <body>
 
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
   <!-- ===== CABECERA ===== -->
   <header class="cabecera" id="cabecera">
     <div class="contenedor cabecera__inner">
@@ -25,23 +35,23 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav" id="menu">
+      <nav class="nav" id="menu" aria-label="Principal">
         <ul class="nav__lista">
           <li><a class="nav__link" href="index.html">Inicio</a></li>
           <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
           <li><a class="nav__link" href="galeria.html">Galería</a></li>
-          <li><a class="nav__link nav__link--activo" href="contacto.html">Contacto</a></li>
+          <li><a class="nav__link nav__link--activo" aria-current="page" href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <!-- ===== CONTENIDO ===== -->
-  <main class="principal">
+  <main class="principal" id="contenido" tabindex="-1">
 
     <div class="contenedor">
       <div class="encabezado-pagina">
-        <p class="migas"><a href="index.html">Inicio</a> <span>/</span> Contacto</p>
+        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> <span aria-current="page">Contacto</span></nav>
         <h1 class="encabezado-pagina__titulo">Contacto</h1>
         <span class="hero__linea" aria-hidden="true"></span>
         <p class="encabezado-pagina__bajada">
@@ -105,7 +115,7 @@
             </div>
 
             <button type="submit" class="boton boton--primario">
-              <i class="fa-solid fa-paper-plane"></i> Enviar mensaje
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar mensaje
             </button>
 
             <p class="formulario__aviso">
@@ -115,7 +125,7 @@
 
             <!-- Mensaje de resultado -->
             <p class="formulario__ok oculto" id="formOk" role="status">
-              <i class="fa-solid fa-circle-check"></i>
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
               ¡Gracias! Tu mensaje quedó registrado. Te respondemos a la brevedad.
             </p>
           </form>
@@ -127,28 +137,28 @@
 
           <ul class="datos">
             <li class="dato">
-              <span class="dato__icono"><i class="fa-solid fa-envelope"></i></span>
+              <span class="dato__icono"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
               <div>
                 <h3 class="dato__titulo">Correo</h3>
                 <p><a href="mailto:hola@lossoprano-fans.com">hola@lossoprano-fans.com</a></p>
               </div>
             </li>
             <li class="dato">
-              <span class="dato__icono"><i class="fa-solid fa-location-dot"></i></span>
+              <span class="dato__icono"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
               <div>
                 <h3 class="dato__titulo">Dónde estamos</h3>
                 <p>Comunidad online. Nos juntamos los domingos a ver un capítulo, virtualmente.</p>
               </div>
             </li>
             <li class="dato">
-              <span class="dato__icono"><i class="fa-solid fa-clock"></i></span>
+              <span class="dato__icono"><i class="fa-solid fa-clock" aria-hidden="true"></i></span>
               <div>
                 <h3 class="dato__titulo">Tiempo de respuesta</h3>
                 <p>Entre 24 y 72 horas. Somos fans, no una redacción.</p>
               </div>
             </li>
             <li class="dato">
-              <span class="dato__icono"><i class="fa-solid fa-circle-question"></i></span>
+              <span class="dato__icono"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span>
               <div>
                 <h3 class="dato__titulo">Antes de escribir</h3>
                 <p>Si tu consulta es sobre una temporada, fijate primero en la sección
@@ -201,10 +211,10 @@
           <div class="tarjeta redes-caja">
             <p class="redes-caja__titulo">También por redes</p>
             <ul class="redes">
-              <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
-              <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-              <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-              <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+              <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+              <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+              <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+              <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
             </ul>
           </div>
         </div>
@@ -222,7 +232,7 @@
           Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
           Este sitio no está afiliado ni patrocinado por HBO.
         </p>
-        <ul class="pie__enlaces">
+        <ul class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -231,10 +241,10 @@
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
         <ul class="redes">
-          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
         </ul>
       </div>
     </div>
