@@ -1,0 +1,189 @@
+/* ==========================================================================
+   LOS SOPRANO - Estilos de la página Personajes
+   ========================================================================== */
+
+/* ---------- Índice de grupos ---------- */
+.indice { margin-top: var(--e-6); }
+
+.indice__lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--e-3);
+}
+
+.indice__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--toque-min);
+  padding: var(--e-2) var(--e-4) var(--e-2) var(--e-5);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-pill);
+  font-size: var(--t-xs);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+  transition: color var(--transicion), border-color var(--transicion),
+              background-color var(--transicion);
+}
+
+.indice__link:hover,
+.indice__link:focus-visible {
+  color: var(--texto);
+  border-color: var(--rojo);
+  background-color: var(--superficie);
+}
+
+.indice__cantidad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: var(--radio-pill);
+  background-color: var(--superficie);
+  font-size: var(--t-xs);
+  letter-spacing: 0;
+  color: var(--dorado);
+}
+
+/* ---------- Grupos ---------- */
+.grupo { padding-top: var(--e-7); }
+.grupo:last-of-type { padding-bottom: var(--e-5); }
+
+.grupo__encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--e-5);
+  row-gap: var(--e-2);
+  margin-bottom: var(--e-5);
+  padding-bottom: var(--e-3);
+  border-bottom: 1px solid var(--borde);
+}
+
+.grupo__encabezado .titulo-seccion { margin-bottom: 0; }
+
+.grupo__bajada {
+  flex: 1 1 320px;
+  font-size: var(--t-md);
+  color: var(--texto-tenue);
+}
+
+/* ---------- Grilla de tarjetas ----------
+   Mismo criterio que la galería: 3 columnas exactas y sin flex-grow, para que
+   una fila incompleta no estire sus tarjetas a todo el ancho. */
+.personajes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-5);
+}
+
+.personaje {
+  flex: 0 1 calc(33.333% - 16px);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;   /* la foto respeta las esquinas redondeadas */
+}
+
+.personaje__foto {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--negro);
+  border-bottom: 1px solid var(--borde);
+}
+
+.personaje__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+/* Las fotos de actrices son retratos verticales: se encuadra hacia arriba
+   para no cortar la cara al recortarlas a 16:10. */
+.personaje__foto--retrato img { object-position: 50% 18%; }
+
+@media (hover: hover) {
+  .personaje:hover .personaje__foto img { transform: scale(1.04); }
+}
+
+.personaje__cuerpo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  padding: var(--e-5);
+}
+
+.personaje__nombre {
+  font-family: var(--fuente-titulo);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: .03em;
+  color: #fff;
+}
+
+.personaje__actor {
+  font-size: var(--t-sm);
+  letter-spacing: .04em;
+  color: var(--dorado);
+}
+
+.personaje__actor strong { font-weight: 600; }
+
+.personaje__texto {
+  font-size: var(--t-md);
+  color: var(--texto-tenue);
+}
+
+/* El crédito queda siempre al pie: las tarjetas de una fila alinean su base
+   aunque los textos tengan distinto largo. */
+.personaje__credito {
+  margin-top: auto;
+  padding-top: var(--e-3);
+  font-size: var(--t-xs);
+  color: var(--texto-debil);
+}
+
+.personaje__credito a {
+  color: var(--texto-tenue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.personaje__credito a:hover { color: var(--rojo-texto); }
+
+/* ---------- Nota final ---------- */
+.grupo__nota {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  max-width: 90ch;
+  margin: var(--e-7) auto var(--e-8);
+  padding: var(--e-4) var(--e-5);
+  font-size: var(--t-sm);
+  color: var(--texto-tenue);
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.grupo__nota i { color: var(--dorado); margin-top: 3px; }
+.grupo__nota a { color: var(--dorado); text-decoration: underline; text-underline-offset: 3px; }
+.grupo__nota a:hover { color: var(--rojo-texto); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+  .personaje { flex: 0 1 calc(50% - 12px); }
+}
+
+@media (max-width: 560px) {
+  .personaje { flex: 1 1 100%; }
+  .grupo { padding-top: var(--e-6); }
+  .grupo__nota { margin-bottom: var(--e-7); }
+}

@@ -248,6 +248,126 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .nav__link--activo { color: var(--texto); }
 .nav__link--activo::after { width: 100%; }
 
+/* --- Ítem con submenú ---
+   Patrón "disclosure navigation" de WAI-ARIA: el link lleva a la página y un
+   botón aparte abre y cierra el submenú. */
+.nav__item--desplegable { position: relative; }
+
+.nav__fila {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav__despliegue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 28 px en escritorio, por encima de los 24 px que pide la WCAG 2.2 */
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--radio);
+  font-size: .65rem;
+  color: var(--texto-tenue);
+  cursor: pointer;
+  transition: color var(--transicion), background-color var(--transicion);
+}
+
+.nav__despliegue:hover { color: var(--texto); background-color: var(--superficie); }
+
+/* La flecha gira cuando el submenú está abierto: el estado no queda solo en
+   el aria-expanded, también se ve. */
+.nav__despliegue i { transition: transform var(--transicion); }
+.nav__despliegue[aria-expanded="true"] { color: var(--texto); }
+.nav__despliegue[aria-expanded="true"] i { transform: rotate(180deg); }
+
+/* --- Submenú flotante (escritorio) --- */
+.submenu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: calc(-1 * var(--e-4));
+  z-index: 110;
+  /* Crece con el contenido: con ancho fijo, "Temporada 6 · 2006 – 2007"
+     se partía en dos líneas. */
+  width: max-content;
+  min-width: 230px;
+  padding: var(--e-2) 0;
+  background-color: var(--negro-suave);
+  border: 1px solid var(--borde);
+  border-top: 2px solid var(--rojo);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-media);
+  /* Cerrado: visibility lo saca también del orden de tabulación y del árbol
+     de accesibilidad, así que sus enlaces no se pueden alcanzar a ciegas. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+}
+
+/* Puente invisible sobre el hueco entre el link y el panel: sin él, al bajar
+   el mouse hacia el submenú se pierde el :hover y el panel se cierra. */
+.submenu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -16px;
+  height: 16px;
+}
+
+.nav__item--desplegable.abierto .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* Con mouse también se abre al pasar por encima. Es una comodidad y no el
+   mecanismo principal: en táctil no hay hover, y con teclado se usa el botón. */
+@media (hover: hover) and (min-width: 993px) {
+  .nav__item--desplegable:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+}
+
+.submenu__link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-4);
+  padding: 10px var(--e-5);
+  white-space: nowrap;
+  font-size: var(--t-sm);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+  transition: color var(--transicion), background-color var(--transicion);
+}
+
+.submenu__link:hover,
+.submenu__link:focus-visible {
+  color: var(--texto);
+  background-color: var(--superficie);
+}
+
+/* El focus-visible global dibuja el anillo por fuera; dentro de un panel con
+   overflow se vería cortado, así que acá va por dentro. */
+.submenu__link:focus-visible { outline-offset: -2px; }
+
+.submenu__meta {
+  font-size: var(--t-xs);
+  letter-spacing: .04em;
+  text-transform: none;
+  color: var(--dorado);
+}
+
 /* --- Botón hamburguesa (solo móvil) --- */
 .menu-toggle {
   display: none;
@@ -665,19 +785,16 @@ textarea:focus-visible,
    7. RESPONSIVE
    ========================================================================== */
 
-/* --- Tablet --- */
+/* --- Tablet y móvil: menú hamburguesa ---
+   El colapso pasa de 768 a 992 px: con cinco secciones más el botón del
+   submenú, el menú horizontal ya no entra al lado del logo en una tablet.
+   OJO: el mismo valor está en js/main.js (MENU_MOVIL); cambiarlos juntos. */
 @media (max-width: 992px) {
   .hero { gap: 36px; }
-  .nav__lista { gap: 22px; }
-}
 
-/* --- Móvil: columnas apiladas + menú desplegable --- */
-@media (max-width: 768px) {
   .menu-toggle { display: flex; }
 
-  .cabecera__inner { min-height: 70px; position: relative; }
-  :root { --alto-cabecera: 71px; }
-  .logo img { height: 34px; }
+  .cabecera__inner { position: relative; }
 
   .nav {
     position: absolute;
@@ -691,27 +808,74 @@ textarea:focus-visible,
     transition: max-height .4s ease;
   }
 
-  /* Holgado a propósito: con el tamaño de letra del sistema agrandado, los
-     320 px que había antes recortaban el último ítem del menú. */
-  .nav.abierto { max-height: 480px; }
+  /* El alto disponible es el de la pantalla menos la cabecera: con el submenú
+     abierto o con la letra del sistema agrandada, la lista se scrollea en vez
+     de quedar recortada (antes había un tope fijo de 480 px). */
+  .nav.abierto { max-height: calc(100vh - var(--alto-cabecera)); }
 
   .nav__lista {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     padding: var(--e-2) var(--e-5) 20px;
-    /* Red de contención: si la letra del sistema está muy agrandada, la lista
-       se scrollea en vez de quedar recortada por el max-height de arriba. */
-    max-height: 480px;
+    max-height: calc(100vh - var(--alto-cabecera));
     overflow-y: auto;
   }
 
-  .nav__lista li { border-bottom: 1px solid var(--borde); }
-  .nav__lista li:last-child { border-bottom: none; }
+  /* Solo el primer nivel lleva separador: el submenú tiene su propio estilo */
+  .nav__lista > li { border-bottom: 1px solid var(--borde); }
+  .nav__lista > li:last-child { border-bottom: none; }
 
   .nav__link { display: block; padding: var(--e-4) 0; }
   .nav__link::after { display: none; }
   .nav__link--activo { color: var(--rojo-texto); }
+
+  /* --- Submenú dentro del menú hamburguesa ---
+     Deja de flotar y se despliega en el lugar, empujando el resto hacia abajo. */
+  .nav__fila { justify-content: space-between; }
+  .nav__fila .nav__link { flex: 1; }
+
+  .nav__despliegue {
+    width: var(--toque-min);
+    height: var(--toque-min);
+    font-size: .85rem;
+    border: 1px solid var(--borde);
+  }
+
+  .submenu {
+    position: static;
+    display: none;
+    width: auto;
+    min-width: 0;
+    margin: 0 0 var(--e-3);
+    padding: 0;
+    background: none;
+    border: 0;
+    border-left: 2px solid var(--rojo);
+    border-radius: 0;
+    box-shadow: none;
+    /* Anula el estado cerrado de escritorio: acá se oculta con display */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+
+  .nav__item--desplegable.abierto .submenu { display: block; }
+
+  .submenu::before { display: none; }
+
+  .submenu__link {
+    min-height: var(--toque-min);
+    padding: var(--e-3) var(--e-4);
+  }
+}
+
+/* --- Móvil: columnas apiladas + menú desplegable --- */
+@media (max-width: 768px) {
+  .cabecera__inner { min-height: 70px; }
+  :root { --alto-cabecera: 71px; }
+  .logo img { height: 34px; }
 
   .principal { padding: var(--e-7) 0 60px; }
 

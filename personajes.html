@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personajes | Los Soprano</title>
+  <meta name="description" content="Los personajes de Los Soprano y los actores que les dieron vida: la familia, la organización y el entorno de Tony.">
+
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Los Soprano">
+  <meta property="og:title" content="Personajes | Los Soprano">
+  <meta property="og:description" content="Los personajes de Los Soprano y los actores que les dieron vida: la familia, la organización y el entorno de Tony.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Font Awesome. El preconnect abre la conexion con el CDN mientras el
+       navegador sigue leyendo el head: ahorra el ida y vuelta de DNS y TLS. -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/personajes.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== CABECERA ===== -->
+  <header class="cabecera" id="cabecera">
+    <div class="contenedor cabecera__inner">
+      <a class="logo" href="index.html" aria-label="Los Soprano - Inicio">
+        <img src="img/logo.svg" alt="Logo de Los Soprano">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="menu" aria-label="Principal">
+        <ul role="list" class="nav__lista">
+          <li class="nav__item"><a class="nav__link" href="index.html">Inicio</a></li>
+          <li class="nav__item nav__item--desplegable">
+            <div class="nav__fila">
+              <a class="nav__link" href="temporadas.html">Temporadas</a>
+              <!-- El link lleva a la página; el botón abre el submenú. Separados,
+                   el submenú se puede abrir con clic, toque o teclado sin
+                   depender del hover, que en pantallas táctiles no existe. -->
+              <button class="nav__despliegue" type="button" aria-expanded="false"
+                      aria-controls="submenu-temporadas" aria-label="Submenú de Temporadas">
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </div>
+            <ul role="list" class="submenu" id="submenu-temporadas">
+              <li><a class="submenu__link" href="temporadas.html#temporada-1">Temporada 1 <span class="submenu__meta">1999</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-2">Temporada 2 <span class="submenu__meta">2000</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-3">Temporada 3 <span class="submenu__meta">2001</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-4">Temporada 4 <span class="submenu__meta">2002</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-5">Temporada 5 <span class="submenu__meta">2004</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-6">Temporada 6 <span class="submenu__meta">2006 – 2007</span></a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a class="nav__link nav__link--activo" aria-current="page" href="personajes.html">Personajes</a></li>
+          <li class="nav__item"><a class="nav__link" href="galeria.html">Galería</a></li>
+          <li class="nav__item"><a class="nav__link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO ===== -->
+  <main class="principal" id="contenido" tabindex="-1">
+
+    <div class="contenedor">
+      <div class="encabezado-pagina">
+        <nav class="migas" aria-label="Ruta de navegación">
+          <ol class="migas__lista">
+            <li><a href="index.html">Inicio</a></li>
+            <li><span aria-current="page">Personajes</span></li>
+          </ol>
+        </nav>
+        <h1 class="encabezado-pagina__titulo">Personajes</h1>
+        <span class="hero__linea" aria-hidden="true"></span>
+        <p class="encabezado-pagina__bajada">
+          Quince personajes y los actores que les dieron vida, agrupados según de qué
+          lado de la mesa se sientan: la familia de sangre, la Familia y los que andan cerca.
+        </p>
+
+        <!-- Índice de la página: salta a cada grupo -->
+        <nav class="indice" aria-label="Grupos de personajes">
+          <ul role="list" class="indice__lista">
+            <li><a class="indice__link" href="#familia">La familia Soprano <span class="indice__cantidad" aria-label="6 personajes">6</span></a></li>
+            <li><a class="indice__link" href="#organizacion">La organización <span class="indice__cantidad" aria-label="6 personajes">6</span></a></li>
+            <li><a class="indice__link" href="#entorno">El entorno <span class="indice__cantidad" aria-label="3 personajes">3</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <section class="contenedor grupo" id="familia" aria-labelledby="titulo-familia">
+      <div class="grupo__encabezado">
+        <h2 class="titulo-seccion" id="titulo-familia">La familia Soprano</h2>
+        <p class="grupo__bajada">La casa de North Caldwell: la familia de sangre, con todo lo que Tony no les cuenta.</p>
+      </div>
+      <ul role="list" class="personajes">
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-tony.jpg" width="1100" height="619" loading="eager" fetchpriority="high"
+                   alt="Tony Soprano en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Tony Soprano</h3>
+              <p class="personaje__actor">Interpretado por <strong>James Gandolfini</strong></p>
+              <p class="personaje__texto">Jefe de la familia criminal DiMeo y padre de familia en los suburbios. Sus ataques de pánico lo llevan al consultorio de Melfi, y la terapia, a preguntas que prefiere no contestar.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto personaje__foto--retrato">
+              <img src="img/galeria/falco.jpg" width="1200" height="1384" loading="eager" fetchpriority="high"
+                   alt="Edie Falco, intérprete de Carmela Soprano">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Carmela Soprano</h3>
+              <p class="personaje__actor">Interpretado por <strong>Edie Falco</strong></p>
+              <p class="personaje__texto">Esposa de Tony. Sabe de dónde sale el dinero y negocia con esa verdad todos los días, entre la iglesia, la casa y sus propias ambiciones.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Edie_Falco_2_by_David_Shankbone.jpg" target="_blank" rel="noopener">David Shankbone</a> · <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-meadow.jpg" width="1100" height="821" loading="eager" fetchpriority="high"
+                   alt="Meadow Soprano en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Meadow Soprano</h3>
+              <p class="personaje__actor">Interpretado por <strong>Jamie-Lynn Sigler</strong></p>
+              <p class="personaje__texto">La hija mayor. Inteligente y sin ingenuidad, estudia en Columbia y elige hasta dónde quiere mirar el negocio de su padre.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Meadow_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-aj.jpg" width="1100" height="620" loading="lazy"
+                   alt="A.J. Soprano en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">A.J. Soprano</h3>
+              <p class="personaje__actor">Interpretado por <strong>Robert Iler</strong></p>
+              <p class="personaje__texto">El hijo menor. Carga con el apellido sin la vocación y atraviesa la serie buscando qué hacer con una vida que ya le vino escrita.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:A.J._Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-janice.jpg" width="1100" height="619" loading="lazy"
+                   alt="Janice Soprano en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Janice Soprano</h3>
+              <p class="personaje__actor">Interpretado por <strong>Aida Turturro</strong></p>
+              <p class="personaje__texto">La hermana mayor de Tony. Vuelve a Nueva Jersey con planes propios y un talento especial para quedar siempre del lado de quien gana.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Janice_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-junior.jpg" width="1100" height="619" loading="lazy"
+                   alt="Junior Soprano en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Corrado “Junior” Soprano</h3>
+              <p class="personaje__actor">Interpretado por <strong>Dominic Chianese</strong></p>
+              <p class="personaje__texto">El tío de Tony y jefe nominal de la familia en las primeras temporadas. Orgulloso, rencoroso y cada vez más frágil.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Junior_Soprano_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+      </ul>
+    </section>
+
+    <section class="contenedor grupo" id="organizacion" aria-labelledby="titulo-organizacion">
+      <div class="grupo__encabezado">
+        <h2 class="titulo-seccion" id="titulo-organizacion">La organización</h2>
+        <p class="grupo__bajada">La otra Familia: los capos y soldados que trabajan para Tony, y que a veces conspiran contra él.</p>
+      </div>
+      <ul role="list" class="personajes">
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-christopher.jpg" width="1100" height="619" loading="lazy"
+                   alt="Christopher Moltisanti en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Christopher Moltisanti</h3>
+              <p class="personaje__actor">Interpretado por <strong>Michael Imperioli</strong></p>
+              <p class="personaje__texto">Primo de Carmela, al que Tony trata como a un sobrino y protegido. Quiere ascender en la organización y, al mismo tiempo, escribir guiones para Hollywood.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Christopher_Moltisanti_(Tony_Soprano%27s_Family_Captains).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-paulie.jpg" width="1100" height="618" loading="lazy"
+                   alt="Paulie Gualtieri en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Paulie “Walnuts” Gualtieri</h3>
+              <p class="personaje__actor">Interpretado por <strong>Tony Sirico</strong></p>
+              <p class="personaje__texto">Capo de la vieja escuela, supersticioso y leal hasta que deja de convenirle. Uno de los personajes más queridos por el público.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Paulie_Gualtieri_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-silvio.jpg" width="1100" height="619" loading="lazy"
+                   alt="Silvio Dante en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Silvio Dante</h3>
+              <p class="personaje__actor">Interpretado por <strong>Steven Van Zandt</strong></p>
+              <p class="personaje__texto">Consigliere de Tony y dueño del Bada Bing. El más calmo del grupo, y el que mejor imita a Al Pacino.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Silvio_Dante_(Tony_Soprano%27s_Family_Captains).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-pussy.jpg" width="1100" height="619" loading="lazy"
+                   alt="Big Pussy Bonpensiero en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Big Pussy Bonpensiero</h3>
+              <p class="personaje__actor">Interpretado por <strong>Vincent Pastore</strong></p>
+              <p class="personaje__texto">Amigo de toda la vida de Tony. Sus ausencias sin explicación siembran la duda que atraviesa las dos primeras temporadas.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Salvatore_%22Big_Pussy%22_Bonpensiero_(Tony_Soprano%27s_Family_Captains).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-bobby.jpg" width="1100" height="619" loading="lazy"
+                   alt="Bobby Baccalieri en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Bobby Baccalieri</h3>
+              <p class="personaje__actor">Interpretado por <strong>Steve Schirripa</strong></p>
+              <p class="personaje__texto">Leal, tranquilo y de buen corazón, es el que más tarda en mancharse las manos. Termina casado con Janice.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Bobby_Baccalieri_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-ralph.jpg" width="1100" height="619" loading="lazy"
+                   alt="Ralph Cifaretto en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Ralph Cifaretto</h3>
+              <p class="personaje__actor">Interpretado por <strong>Joe Pantoliano</strong></p>
+              <p class="personaje__texto">Brillante para los negocios e incontrolable en todo lo demás. Su choque con Tony marca la tercera y la cuarta temporada.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Ralph_Cifaretto_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+      </ul>
+    </section>
+
+    <section class="contenedor grupo" id="entorno" aria-labelledby="titulo-entorno">
+      <div class="grupo__encabezado">
+        <h2 class="titulo-seccion" id="titulo-entorno">El entorno</h2>
+        <p class="grupo__bajada">Los que están cerca de Tony sin ser de la casa ni del grupo, y cambian el rumbo de la historia.</p>
+      </div>
+      <ul role="list" class="personajes">
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto personaje__foto--retrato">
+              <img src="img/galeria/bracco.jpg" width="597" height="992" loading="lazy"
+                   alt="Lorraine Bracco, intérprete de la doctora Jennifer Melfi">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Dra. Jennifer Melfi</h3>
+              <p class="personaje__actor">Interpretado por <strong>Lorraine Bracco</strong></p>
+              <p class="personaje__texto">La psiquiatra de Tony. Durante seis temporadas sostiene un tratamiento con un paciente que la fascina y la inquieta a partes iguales.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Lorraine_Bracco.jpg" target="_blank" rel="noopener">Iustinus</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/galeria/p-adriana.jpg" width="1100" height="619" loading="lazy"
+                   alt="Adriana La Cerva en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Adriana La Cerva</h3>
+              <p class="personaje__actor">Interpretado por <strong>Drea de Matteo</strong></p>
+              <p class="personaje__texto">La novia de Christopher. Queda atrapada entre la lealtad al grupo y la presión del FBI, en una de las historias más tristes de la serie.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Adriana_La_Cerva_(The_Sopranos_Family_Tree).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+
+          <li class="personaje tarjeta">
+            <figure class="personaje__foto">
+              <img src="img/personajes/tony-blundetto.jpg" width="1100" height="619" loading="lazy"
+                   alt="Tony Blundetto en un fotograma de la serie">
+            </figure>
+            <div class="personaje__cuerpo">
+              <h3 class="personaje__nombre">Tony Blundetto</h3>
+              <p class="personaje__actor">Interpretado por <strong>Steve Buscemi</strong></p>
+              <p class="personaje__texto">Primo de Tony. Sale de prisión decidido a llevar una vida honesta, y su decisión termina arrastrando a Tony a un conflicto con Nueva York.</p>
+              <p class="personaje__credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Tony_Blundetto_(The_Sopranos_Top_25_Best_Lines).jpg" target="_blank" rel="noopener">HBO</a> · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a></p>
+            </div>
+          </li>
+      </ul>
+    </section>
+
+    <div class="contenedor">
+      <p class="grupo__nota">
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        <span>Las imágenes son de uso libre y están acreditadas una por una: los fotogramas
+        los publicó HBO bajo licencia CC BY 3.0 y las fotos de Edie Falco y Lorraine Bracco
+        son de sus autores, bajo Creative Commons. Hay más en la
+        <a href="galeria.html">galería</a>.</span>
+      </p>
+    </div>
+  </main>
+
+  <!-- ===== PIE DE SITIO ===== -->
+  <footer class="pie">
+    <div class="contenedor pie__inner">
+      <div class="pie__legales">
+        <p class="pie__copy">&copy; <span id="anio">2026</span> Los Soprano &mdash; Sitio de fans sin fines de lucro.</p>
+        <p class="pie__aviso">
+          Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
+          Este sitio no está afiliado ni patrocinado por HBO.
+        </p>
+        <ul role="list" class="pie__enlaces" aria-label="Enlaces legales">
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="pie__redes">
+        <p class="pie__redes-titulo">Seguinos</p>
+        <ul role="list" class="redes">
+          <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+          <li><a class="redes__link" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

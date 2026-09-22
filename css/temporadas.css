@@ -131,6 +131,18 @@
 
 .temporada:hover .chip { border-color: rgba(179, 18, 43, .4); }
 
+/* Al llegar desde el submenú (temporadas.html#temporada-3), la tarjeta elegida
+   queda marcada: sin esto, después del salto no es obvio cuál es. */
+.temporada:target {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 1px var(--rojo), var(--sombra-media);
+}
+
+.temporada:target .temporada__numero {
+  background-color: var(--rojo);
+  color: #fff;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .temporada {

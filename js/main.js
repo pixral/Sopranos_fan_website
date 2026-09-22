@@ -4,6 +4,12 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  /* Ancho hasta el que el menú es hamburguesa. Tiene que coincidir con el
+     @media (max-width: 992px) de css/estilos.css: si se cambia uno, el otro. */
+  var MENU_MOVIL = 992;
+
+  function esEscritorio() { return window.innerWidth > MENU_MOVIL; }
+
   /* ---------- 1. Menú responsive (hamburguesa) ---------- */
   var boton = document.getElementById("menuToggle");
   var menu  = document.getElementById("menu");
@@ -28,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("resize", function () {
       clearTimeout(temporizadorResize);
       temporizadorResize = setTimeout(function () {
-        if (window.innerWidth > 768) cerrarMenu();
+        if (esEscritorio()) cerrarMenu();
       }, 150);
     });
 
@@ -52,7 +58,64 @@ document.addEventListener("DOMContentLoaded", function () {
     boton.classList.remove("activo");
     boton.setAttribute("aria-expanded", "false");
     boton.setAttribute("aria-label", "Abrir menú");
+    /* Al volver a abrir el menú, los submenús arrancan plegados */
+    cerrarSubmenus();
   }
+
+  /* ---------- 1b. Submenús desplegables ----------
+     Cada ítem con submenú tiene un botón propio (aria-expanded). Se abre con
+     clic, toque, Enter o Espacio; se cierra con Escape, con un clic afuera o,
+     en escritorio, cuando el foco sale del ítem. */
+  var desplegables = Array.prototype.slice.call(
+    document.querySelectorAll(".nav__item--desplegable")
+  );
+
+  function fijarSubmenu(item, abierto) {
+    item.classList.toggle("abierto", abierto);
+    item.querySelector(".nav__despliegue").setAttribute("aria-expanded", abierto);
+  }
+
+  function cerrarSubmenus(excepto) {
+    desplegables.forEach(function (item) {
+      if (item !== excepto) fijarSubmenu(item, false);
+    });
+  }
+
+  desplegables.forEach(function (item) {
+    var disparador = item.querySelector(".nav__despliegue");
+
+    disparador.addEventListener("click", function () {
+      var abrir = !item.classList.contains("abierto");
+      cerrarSubmenus(item);        /* uno abierto por vez */
+      fijarSubmenu(item, abrir);
+    });
+
+    /* Escape cierra solo el submenú y devuelve el foco a su botón. Se corta la
+       propagación para que el Escape del menú hamburguesa no cierre todo de
+       una: la primera pulsación pliega el submenú, la segunda cierra el menú. */
+    item.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || !item.classList.contains("abierto")) return;
+      e.stopPropagation();
+      fijarSubmenu(item, false);
+      disparador.focus();
+    });
+
+    /* En escritorio el submenú flota sobre el contenido: si el foco se va con
+       Tab, se cierra para no dejar un panel abierto tapando la página. En el
+       menú hamburguesa se queda abierto, porque ahí no tapa nada. */
+    item.addEventListener("focusout", function (e) {
+      if (!esEscritorio()) return;
+      if (e.relatedTarget && item.contains(e.relatedTarget)) return;
+      fijarSubmenu(item, false);
+    });
+  });
+
+  /* Clic en cualquier otra parte: se cierran los submenús abiertos */
+  document.addEventListener("click", function (e) {
+    desplegables.forEach(function (item) {
+      if (!item.contains(e.target)) fijarSubmenu(item, false);
+    });
+  });
 
   /* ---------- 2. Sombra en la cabecera al hacer scroll ----------
      El evento de scroll se dispara en cada cuadro. Antes se escribía en el
