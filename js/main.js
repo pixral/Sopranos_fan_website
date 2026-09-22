@@ -21,9 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
       enlace.addEventListener("click", cerrarMenu);
     });
 
-    /* Cerrar el menú al volver a escritorio */
+    /* Cerrar el menú al volver a escritorio.
+       El resize dispara decenas de veces por segundo mientras se arrastra el
+       borde de la ventana: se espera a que pare. */
+    var temporizadorResize = null;
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) cerrarMenu();
+      clearTimeout(temporizadorResize);
+      temporizadorResize = setTimeout(function () {
+        if (window.innerWidth > 768) cerrarMenu();
+      }, 150);
     });
 
     /* Cerrar el menú con la tecla Escape y devolver el foco al botón */
@@ -48,13 +54,29 @@ document.addEventListener("DOMContentLoaded", function () {
     boton.setAttribute("aria-label", "Abrir menú");
   }
 
-  /* ---------- 2. Sombra en la cabecera al hacer scroll ---------- */
+  /* ---------- 2. Sombra en la cabecera al hacer scroll ----------
+     El evento de scroll se dispara en cada cuadro. Antes se escribía en el
+     DOM en todos, incluso cuando la clase ya estaba puesta; ahora el trabajo
+     se agenda en un requestAnimationFrame y solo se toca el DOM si el estado
+     realmente cambió. */
   var cabecera = document.getElementById("cabecera");
 
   if (cabecera) {
+    var conSombra = false;
+    var pendiente = false;
+
     window.addEventListener("scroll", function () {
-      cabecera.classList.toggle("cabecera--scroll", window.scrollY > 20);
-    });
+      if (pendiente) return;
+      pendiente = true;
+
+      window.requestAnimationFrame(function () {
+        pendiente = false;
+        var deberia = window.scrollY > 20;
+        if (deberia === conSombra) return;
+        conSombra = deberia;
+        cabecera.classList.toggle("cabecera--scroll", deberia);
+      });
+    }, { passive: true });
   }
 
   /* ---------- 3. Año actual en los legales del pie ---------- */

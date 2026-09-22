@@ -14,6 +14,9 @@
   <meta property="og:description" content="Galería del elenco y de las locaciones reales donde se filmó Los Soprano.">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Font Awesome. El preconnect abre la conexion con el CDN mientras el
+       navegador sigue leyendo el head: ahorra el ida y vuelta de DNS y TLS. -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +39,7 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="menu" aria-label="Principal">
-        <ul class="nav__lista">
+        <ul role="list" class="nav__lista">
           <li><a class="nav__link" href="index.html">Inicio</a></li>
           <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
           <li><a class="nav__link nav__link--activo" aria-current="page" href="galeria.html">Galería</a></li>
@@ -51,7 +54,12 @@
 
     <div class="contenedor">
       <div class="encabezado-pagina">
-        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> <span aria-current="page">Galería</span></nav>
+        <nav class="migas" aria-label="Ruta de navegación">
+          <ol class="migas__lista">
+            <li><a href="index.html">Inicio</a></li>
+            <li><span aria-current="page">Galería</span></li>
+          </ol>
+        </nav>
         <h1 class="encabezado-pagina__titulo">Galería</h1>
         <span class="hero__linea" aria-hidden="true"></span>
         <p class="encabezado-pagina__bajada">
@@ -73,13 +81,13 @@
         <button class="filtro" data-filtro="locaciones">Locaciones</button>
       </div>
 
-      <p class="galeria__contador" id="contador" role="status"></p>
+      <p class="galeria__contador" id="contador" role="status" aria-atomic="true"></p>
 
       <!-- Grilla -->
-      <ul class="galeria" id="galeria">
+      <ul role="list" class="galeria" id="galeria">
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Tony Soprano"
                   data-epigrafe="Jefe de la familia DiMeo y, dos veces por semana, paciente de la doctora Melfi."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -93,7 +101,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Corrado “Junior” Soprano"
                   data-epigrafe="El tío de Tony: jefe nominal de la familia y rival permanente."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -107,7 +115,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Christopher Moltisanti"
                   data-epigrafe="El ahijado de Tony, que sueña con escribir guiones de cine."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -121,7 +129,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Paulie “Walnuts” Gualtieri"
                   data-epigrafe="Capo de la vieja escuela, supersticioso y de lealtad elástica."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -135,7 +143,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Silvio Dante"
                   data-epigrafe="Consigliere de Tony y dueño del Bada Bing."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -149,7 +157,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Adriana La Cerva"
                   data-epigrafe="La novia de Christopher, atrapada entre el grupo y el FBI."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -163,7 +171,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Janice Soprano"
                   data-epigrafe="La hermana mayor de Tony, que vuelve a Nueva Jersey a cobrarse lo suyo."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -177,7 +185,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Meadow Soprano"
                   data-epigrafe="La hija que entiende de qué vive su padre y elige mirar para otro lado."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -191,7 +199,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="A.J. Soprano"
                   data-epigrafe="El hijo menor, que carga con el apellido sin saber qué hacer con él."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -205,7 +213,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Bobby Baccalieri"
                   data-epigrafe="El más noble del grupo, y el que más tarda en mancharse las manos."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -219,7 +227,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Ralph Cifaretto"
                   data-epigrafe="Tan rentable como incontrolable: el problema de la cuarta temporada."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -233,7 +241,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="personajes">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Big Pussy Bonpensiero"
                   data-epigrafe="Amigo de toda la vida de Tony, y la traición que abre la serie."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -247,7 +255,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="En el diván"
                   data-epigrafe="La sesión con la doctora Melfi: el recurso que cambió la televisión."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -261,7 +269,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="El final"
                   data-epigrafe="La última escena en Holsten’s, todavía discutida casi veinte años después."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -275,7 +283,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="El discurso"
                   data-epigrafe="Cuando Tony habla de la familia, nunca queda claro de cuál de las dos."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -289,7 +297,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Padre e hija"
                   data-epigrafe="Meadow y Tony: la conversación que ninguno de los dos quiere tener del todo."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -303,7 +311,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Tony y Junior"
                   data-epigrafe="Sobrino y tío, socios y adversarios en la misma mesa."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -317,7 +325,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Adriana y Christopher"
                   data-epigrafe="La pareja más inestable de Nueva Jersey."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -331,7 +339,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Tony y Richie Aprile"
                   data-epigrafe="Richie sale de prisión y quiere recuperar un lugar que ya no existe."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -345,7 +353,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="momentos">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Satriale’s en la serie"
                   data-epigrafe="La carnicería donde se cierra todo lo que no puede hablarse por teléfono."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -359,7 +367,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="James Gandolfini"
                   data-epigrafe="Tony Soprano. Ganó tres premios Emmy por el papel."
                   data-credito="Foto: gdcgraphics · CC BY-SA 2.0 · Wikimedia Commons">
@@ -373,7 +381,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Edie Falco"
                   data-epigrafe="Carmela Soprano, el otro centro de gravedad de la casa."
                   data-credito="Foto: David Shankbone · CC BY-SA 3.0 · Wikimedia Commons">
@@ -387,7 +395,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Lorraine Bracco"
                   data-epigrafe="La doctora Jennifer Melfi, la única persona que escucha a Tony."
                   data-credito="Foto: Iustinus · CC BY-SA 3.0 · Wikimedia Commons">
@@ -401,7 +409,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Michael Imperioli"
                   data-epigrafe="Dio vida a Christopher Moltisanti durante las seis temporadas."
                   data-credito="Foto: Josh Miller · CC BY 2.0 · Wikimedia Commons">
@@ -415,7 +423,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Tony Sirico"
                   data-epigrafe="Paulie Gualtieri. Antes de actuar tuvo una vida bastante parecida al papel."
                   data-credito="Foto: Lakisha A. Croley, U.S. Air Force · Public domain · Wikimedia Commons">
@@ -429,7 +437,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Steven Van Zandt"
                   data-epigrafe="Silvio Dante. Guitarrista de la E Street Band antes que actor."
                   data-credito="Foto: Fuzheado · CC BY-SA 4.0 · Wikimedia Commons">
@@ -443,7 +451,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Vincent Pastore"
                   data-epigrafe="Big Pussy Bonpensiero, el informante de la segunda temporada."
                   data-credito="Foto: Rob DiCaterino · CC BY 2.0 · Wikimedia Commons">
@@ -457,7 +465,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Drea de Matteo"
                   data-epigrafe="Adriana La Cerva. Ganó un Emmy por el papel en 2004."
                   data-credito="Foto: Gabbot · CC BY-SA 2.0 · Wikimedia Commons">
@@ -471,7 +479,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Jamie-Lynn Sigler"
                   data-epigrafe="Meadow Soprano, desde la adolescencia hasta la última escena."
                   data-credito="Foto: Kristin Dos Santos · CC BY-SA 2.0 · Wikimedia Commons">
@@ -485,7 +493,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Aida Turturro"
                   data-epigrafe="Janice Soprano, la hermana que siempre vuelve."
                   data-credito="Foto: David Shankbone · CC BY 3.0 · Wikimedia Commons">
@@ -499,7 +507,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Steve Buscemi"
                   data-epigrafe="Tony Blundetto. También dirigió cuatro episodios de la serie."
                   data-credito="Foto: HBO · CC BY 3.0 · Wikimedia Commons">
@@ -513,7 +521,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="Dominic Chianese"
                   data-epigrafe="El tío Junior. Además es cantante y guitarrista."
                   data-credito="Foto: Mike L Photo's · CC BY 2.0 · Wikimedia Commons">
@@ -527,7 +535,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="elenco">
-          <button class="galeria__boton galeria__boton--retrato"
+          <button class="galeria__boton galeria__boton--retrato" aria-haspopup="dialog"
                   data-titulo="David Chase"
                   data-epigrafe="El creador de la serie, en los Premios Peabody del año 2000."
                   data-credito="Foto: Peabody Awards · CC BY 2.0 · Wikimedia Commons">
@@ -541,7 +549,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="locaciones">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Satin Dolls, el Bada Bing"
                   data-epigrafe="El club de la Ruta 17, en Lodi, que hizo de Bada Bing durante toda la serie."
                   data-credito="Foto: Christian David · CC BY-SA 4.0 · Wikimedia Commons">
@@ -555,7 +563,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="locaciones">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="La casa de los Soprano"
                   data-epigrafe="14 Aspen Drive, North Caldwell: la casa real que se ve en la serie."
                   data-credito="Foto: Christian David · CC BY-SA 4.0 · Wikimedia Commons">
@@ -569,7 +577,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="locaciones">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Holsten’s"
                   data-epigrafe="La heladería de Bloomfield donde se filmó la escena final."
                   data-credito="Foto: Christian David · CC BY-SA 4.0 · Wikimedia Commons">
@@ -583,7 +591,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="locaciones">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Satriale’s, el local real"
                   data-epigrafe="La esquina de Kearny donde se construyó la carnicería para la ficción."
                   data-credito="Foto: Stephen Hanafin · CC BY-SA 2.0 · Wikimedia Commons">
@@ -597,7 +605,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="locaciones">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="New Jersey Turnpike"
                   data-epigrafe="La autopista de los títulos de apertura, vista desde el auto."
                   data-credito="Foto: Doug Kerr · CC BY-SA 2.0 · Wikimedia Commons">
@@ -611,7 +619,7 @@
         </li>
 
         <li class="galeria__item" data-categoria="locaciones">
-          <button class="galeria__boton"
+          <button class="galeria__boton" aria-haspopup="dialog"
                   data-titulo="Newark"
                   data-epigrafe="La ciudad que Tony deja atrás cada vez que cruza hacia los suburbios."
                   data-credito="Foto: King of Hearts · CC BY-SA 4.0 · Wikimedia Commons">
@@ -659,6 +667,10 @@
       </figcaption>
     </figure>
 
+    <!-- Al pasar de una foto a otra el foco se queda en la flecha: este aviso
+         es lo único que le dice al lector de pantalla que la imagen cambió. -->
+    <p class="solo-lectores" id="visorEstado" role="status"></p>
+
     <button class="visor__nav visor__nav--siguiente" id="visorSiguiente" aria-label="Imagen siguiente">
       <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
     </button>
@@ -673,7 +685,7 @@
           Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
           Este sitio no está afiliado ni patrocinado por HBO.
         </p>
-        <ul class="pie__enlaces" aria-label="Enlaces legales">
+        <ul role="list" class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -681,7 +693,7 @@
       </div>
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
-        <ul class="redes">
+        <ul role="list" class="redes">
           <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>

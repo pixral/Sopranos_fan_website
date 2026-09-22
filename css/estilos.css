@@ -5,11 +5,20 @@
 
 /* ---------- 1. Variables ---------- */
 :root {
+  /* El sitio es oscuro: se lo avisamos al navegador para que pinte en oscuro
+     los controles nativos (checkbox, lista del select, barras de scroll y
+     cursor de texto). Sin esto los renderiza en claro sobre fondo negro. */
+  color-scheme: dark;
+
   /* --- Superficies --- */
   --negro:        #0b0b0c;
   --negro-suave:  #131315;
   --superficie:   #1a1a1d;
-  --borde:        #2a2a2e;
+  --borde:        #2a2a2e;  /* separación decorativa entre superficies */
+  /* Los campos del formulario se identifican por su contorno, así que ese
+     contorno necesita 3:1 contra el fondo (WCAG 1.4.11). El --borde general
+     da 1.2:1: alcanza para decorar una tarjeta, no para delimitar un control. */
+  --borde-campo:  #66666a;  /* 3.04:1 sobre --superficie */
   --separador:    #5f5f66;  /* glifos decorativos: visibles, sin competir */
 
   /* --- Acentos --- */
@@ -32,6 +41,15 @@
   --t-sm:   .8rem;    /* botones, metadatos, pie */
   --t-md:   .9rem;    /* texto secundario */
   --t-lg:   .95rem;   /* texto de formulario y destacados */
+
+  /* Escala de títulos. Antes cada página inventaba el suyo (1.05 / 1.1 / 1.15 /
+     1.3 / 1.35 / 1.5 / 1.6 / 1.9 / 2.4 rem); ahora son cinco peldaños. */
+  --t-h4:   1.05rem;  /* título de ficha en la galería */
+  --t-h3:   1.15rem;  /* subtítulo de sección */
+  --t-h2:   1.35rem;  /* título de temporada y del visor */
+  --t-h1:   1.5rem;   /* título de sección */
+  --t-num:  1.6rem;   /* número de temporada */
+  --t-dato: 2.4rem;   /* cifras destacadas */
 
   /* --- Espaciado --- */
   --e-1:  4px;
@@ -101,11 +119,17 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  /* En móvil, 100vh no descuenta la barra del navegador y deja el pie fuera
+     de la pantalla. dvh sí; se deja vh de respaldo para navegadores viejos. */
+  min-height: 100dvh;
 }
 
 img { max-width: 100%; display: block; }
-ul  { list-style: none; }
+ul, ol { list-style: none; }
 a   { color: inherit; text-decoration: none; transition: color var(--transicion); }
+
+/* Un correo, una URL o un título largo no deben empujar el ancho de la página */
+p, li, figcaption, label, h1, h2, h3 { overflow-wrap: anywhere; }
 
 /* Elimina el retardo de ~300 ms que algunos móviles aplican al tocar */
 a, button, summary, input, select, textarea, label { touch-action: manipulation; }
@@ -189,7 +213,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .nav__lista {
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: var(--e-6);
 }
 
 .nav__link {
@@ -198,7 +222,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--texto-tenue);
-  padding: 6px 0;
+  padding: var(--e-2) 0;
 }
 
 .nav__link::after {
@@ -217,6 +241,10 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .nav__link:hover::after,
 .nav__link:focus-visible::after { width: 100%; }
 
+/* Respuesta inmediata al apretar: sin esto el enlace no acusa recibo hasta
+   que carga la página siguiente. */
+.nav__link:active { color: var(--rojo-texto); }
+
 .nav__link--activo { color: var(--texto); }
 .nav__link--activo::after { width: 100%; }
 
@@ -234,6 +262,10 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
   border-radius: var(--radio);
   cursor: pointer;
 }
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible { border-color: var(--texto-tenue); }
+.menu-toggle:active { background-color: var(--superficie); }
 
 .menu-toggle span {
   display: block;
@@ -263,7 +295,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .principal--inicio {
   position: relative;
   overflow: hidden;      /* recorta el acercamiento de las fotos */
-  padding: 150px 0 120px; /* aire arriba para que se vea el montaje */
+  padding: 152px 0 120px; /* aire arriba para que se vea el montaje */
 }
 
 /* El contenido queda por encima del montaje */
@@ -364,6 +396,8 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
   background-color: rgba(11, 11, 12, .95);
 }
 
+.montaje-control:active { background-color: var(--superficie); }
+
 .montaje--pausado .montaje__foto { animation-play-state: paused; }
 
 /* Si el sistema pide menos movimiento, se deja una sola imagen fija
@@ -411,7 +445,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
   letter-spacing: .3em;
   text-transform: uppercase;
   color: var(--dorado);
-  margin-bottom: 14px;
+  margin-bottom: var(--e-3);
 }
 
 .hero__titulo {
@@ -427,7 +461,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 
 .hero__linea {
   display: block;
-  width: 90px;
+  width: 88px;
   height: 3px;
   background-color: var(--rojo);
   margin: var(--e-5) 0 28px;
@@ -461,7 +495,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .hero__figura:hover img { transform: scale(1.03); }
 
 .hero__figura figcaption {
-  padding: 14px 18px;
+  padding: var(--e-3) var(--e-4);
   font-size: var(--t-sm);
   letter-spacing: .04em;
   color: var(--texto-tenue);
@@ -471,7 +505,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 
 .hero__credito {
   display: block;
-  margin-top: 5px;
+  margin-top: var(--e-1);
   font-size: var(--t-xs);
   color: var(--texto-debil);
 }
@@ -482,7 +516,8 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
   text-underline-offset: 2px;
 }
 
-.hero__credito a:hover { color: var(--rojo-texto); }
+.hero__credito a:hover,
+.hero__credito a:focus-visible { color: var(--rojo-texto); }
 
 /* ==========================================================================
    6. PIE DE SITIO
@@ -507,7 +542,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .pie__copy {
   font-size: var(--t-lg);
   color: var(--texto);
-  margin-bottom: 6px;
+  margin-bottom: var(--e-1);
 }
 
 .pie__aviso {
@@ -519,18 +554,25 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .pie__enlaces {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 22px;
-  margin-top: 14px;
+  gap: var(--e-2) var(--e-5);
+  margin-top: var(--e-3);
 }
 
+/* No son enlaces sueltos dentro de un párrafo sino una lista de navegación:
+   les corresponde el mínimo de 24 px de alto de la WCAG 2.2 (1.8 rem de
+   línea sobre 12,8 px daban 22 px y se quedaban cortos). */
 .pie__enlaces a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   font-size: var(--t-sm);
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--texto-tenue);
 }
 
-.pie__enlaces a:hover { color: var(--rojo-texto); }
+.pie__enlaces a:hover,
+.pie__enlaces a:focus-visible { color: var(--rojo-texto); }
 
 /* --- Redes sociales --- */
 .pie__redes { flex: 0 1 auto; }
@@ -540,7 +582,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
   letter-spacing: .24em;
   text-transform: uppercase;
   color: var(--texto-tenue);
-  margin-bottom: 14px;
+  margin-bottom: var(--e-3);
 }
 
 .redes {
@@ -570,6 +612,13 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
   transform: translateY(var(--elevacion));
 }
 
+/* Al apretar vuelve a su sitio: se lee como si el botón se hundiera */
+.redes__link:active {
+  transform: translateY(0);
+  background-color: var(--rojo-claro);
+  border-color: var(--rojo-claro);
+}
+
 /* Accesibilidad: foco visible en todo el sitio.
    Antes la regla solo alcanzaba a <a> y <button>, así que los campos del
    formulario y el <summary> de las preguntas frecuentes quedaban sin anillo. */
@@ -596,6 +645,20 @@ textarea:focus-visible,
   .redes__link:hover { transform: none; }
 
   .hero__figura:hover img { transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Dedo en vez de puntero. Antes el tamaño táctil dependía del ancho de la
+   pantalla, así que una tablet táctil de 1024 px se quedaba con los objetivos
+   chicos del escritorio. El criterio correcto es el tipo de puntero.
+   No se tocan los enlaces del menú: en escritorio son inline y el subrayado
+   se despegaría del texto. Con 27 px ya cumplen los 24 px que pide la web.
+   -------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  .boton { min-height: var(--toque-min); }
+
+  .pie__enlaces a,
+  .migas a { min-height: var(--toque-min); }
 }
 
 /* ==========================================================================
@@ -628,19 +691,25 @@ textarea:focus-visible,
     transition: max-height .4s ease;
   }
 
-  .nav.abierto { max-height: 320px; }
+  /* Holgado a propósito: con el tamaño de letra del sistema agrandado, los
+     320 px que había antes recortaban el último ítem del menú. */
+  .nav.abierto { max-height: 480px; }
 
   .nav__lista {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     padding: var(--e-2) var(--e-5) 20px;
+    /* Red de contención: si la letra del sistema está muy agrandada, la lista
+       se scrollea en vez de quedar recortada por el max-height de arriba. */
+    max-height: 480px;
+    overflow-y: auto;
   }
 
   .nav__lista li { border-bottom: 1px solid var(--borde); }
   .nav__lista li:last-child { border-bottom: none; }
 
-  .nav__link { display: block; padding: 15px 0; }
+  .nav__link { display: block; padding: var(--e-4) 0; }
   .nav__link::after { display: none; }
   .nav__link--activo { color: var(--rojo-texto); }
 
@@ -686,9 +755,10 @@ textarea:focus-visible,
 
 /* --- Móvil chico --- */
 @media (max-width: 480px) {
-  .contenedor { padding: 0 18px; }
+  .contenedor { padding: 0 var(--e-4); }
   .hero__titulo { font-size: 2.3rem; }
-  body { font-size: 15px; }
+  /* El texto base se queda en 16 px. Antes bajaba a 15 px justo en las
+     pantallas donde peor se lee, que es al revés de lo recomendado. */
 }
 
 /* ==========================================================================
@@ -699,15 +769,29 @@ textarea:focus-visible,
   padding: var(--e-8) 0 var(--e-3);
 }
 
-.migas {
+/* Las migas son una lista ordenada: así el lector de pantalla anuncia
+   "lista de 2 elementos" y se entiende la jerarquía. */
+.migas__lista {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  gap: var(--e-2);
   font-size: var(--t-xs);
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--texto-tenue);
   margin-bottom: var(--e-4);
+}
+
+.migas__lista li { display: flex; align-items: center; }
+
+/* La barra que separa los niveles la pone el CSS: es pura decoración y así
+   no se lee en voz alta ni cuenta como texto con contraste insuficiente. */
+.migas__lista li + li::before {
+  content: "/";
+  margin-right: var(--e-2);
+  color: var(--separador);
 }
 
 /* Los enlaces de las migas son navegación suelta, no texto en línea:
@@ -718,8 +802,8 @@ textarea:focus-visible,
   min-height: 24px;
 }
 
-.migas a:hover { color: var(--rojo-texto); }
-.migas span { color: var(--separador); }
+.migas a:hover,
+.migas a:focus-visible { color: var(--rojo-texto); }
 
 .encabezado-pagina__titulo {
   font-family: var(--fuente-titulo);
@@ -748,7 +832,7 @@ textarea:focus-visible,
 
 .titulo-seccion {
   font-family: var(--fuente-titulo);
-  font-size: 1.5rem;
+  font-size: var(--t-h1);
   letter-spacing: .08em;
   text-transform: uppercase;
   color: #fff;
@@ -760,7 +844,9 @@ textarea:focus-visible,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: var(--e-2);
+  /* Se deja en 14 px: con la interlínea da 52 px de alto, de sobra para el
+     dedo. Subirlo a 16 solo por cuadrar la grilla lo engordaba sin motivo. */
   padding: 14px 28px;
   border: 1px solid var(--borde);
   border-radius: var(--radio);
@@ -776,11 +862,15 @@ textarea:focus-visible,
               color var(--transicion), transform var(--transicion);
 }
 
-.boton:hover {
+.boton:hover,
+.boton:focus-visible {
   border-color: var(--rojo);
   color: #fff;
   transform: translateY(var(--elevacion));
 }
+
+/* Al apretar baja: acuse de recibo inmediato, sin esperar a la acción */
+.boton:active { transform: translateY(0); }
 
 .boton--primario {
   background-color: var(--rojo);
@@ -788,7 +878,10 @@ textarea:focus-visible,
   color: #fff;
 }
 
-.boton--primario:hover { background-color: var(--rojo-claro); border-color: var(--rojo-claro); }
+.boton--primario:hover,
+.boton--primario:focus-visible { background-color: var(--rojo-claro); border-color: var(--rojo-claro); }
+
+.boton--primario:active { background-color: var(--rojo); border-color: var(--rojo); }
 
 /* --- Tarjeta genérica --- */
 .tarjeta {

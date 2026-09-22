@@ -7,12 +7,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 18px;
+  gap: var(--e-2);
+  margin-bottom: var(--e-4);
 }
 
 .filtro {
-  padding: 11px var(--e-5);
+  padding: var(--e-3) var(--e-5);
   background: none;
   border: 1px solid var(--borde);
   border-radius: var(--radio-pill);
@@ -26,7 +26,12 @@
               background-color var(--transicion);
 }
 
-.filtro:hover { color: var(--texto); border-color: var(--texto-tenue); }
+/* El foco del teclado tiene que cambiar lo mismo que el paso del mouse:
+   antes solo se veía el anillo dorado y el botón quedaba igual de apagado. */
+.filtro:hover,
+.filtro:focus-visible { color: var(--texto); border-color: var(--texto-tenue); }
+
+.filtro:active { background-color: var(--superficie); }
 
 .filtro--activo {
   color: #fff;
@@ -34,13 +39,21 @@
   border-color: var(--rojo);
 }
 
+.filtro--activo:hover,
+.filtro--activo:focus-visible { color: #fff; border-color: var(--rojo-claro); background-color: var(--rojo-claro); }
+
+.filtro--activo:active { background-color: var(--rojo); }
+
 .galeria__contador {
   text-align: center;
   font-size: var(--t-xs);
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--texto-tenue);
-  margin-bottom: 30px;
+  margin-bottom: var(--e-6);
+  /* Reserva la línea: el texto lo escribe el script y, sin esto, la grilla
+     saltaba hacia arriba entre que carga el HTML y corre el JS. */
+  min-height: 1.75em;
 }
 
 /* ---------- Grilla ---------- */
@@ -78,6 +91,8 @@
   box-shadow: var(--sombra-media);
 }
 
+.galeria__boton:active { transform: translateY(0); }
+
 .galeria__boton img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -106,16 +121,19 @@
   text-underline-offset: 2px;
 }
 
-.galeria__credito a:hover { color: var(--rojo-texto); }
+.galeria__credito a:hover,
+.galeria__credito a:focus-visible { color: var(--rojo-texto); }
 
 /* Nota general de créditos */
 .galeria__nota {
   display: flex;
   align-items: flex-start;
   gap: var(--e-3);
-  max-width: 90ch;
+  /* 90ch daba renglones de más de 100 caracteres en pantalla ancha: por
+     encima de 75 el ojo pierde el salto de línea. */
+  max-width: 75ch;
   margin: 40px auto 0;
-  padding: 18px 20px;
+  padding: var(--e-4) 20px;
   font-size: var(--t-sm);
   color: var(--texto-tenue);
   background-color: var(--superficie);
@@ -125,7 +143,8 @@
 
 .galeria__nota i { color: var(--dorado); margin-top: 3px; }
 .galeria__nota a { color: var(--dorado); text-decoration: underline; text-underline-offset: 3px; }
-.galeria__nota a:hover { color: var(--rojo-texto); }
+.galeria__nota a:hover,
+.galeria__nota a:focus-visible { color: var(--rojo-texto); }
 
 /* Capa con el texto */
 .galeria__overlay {
@@ -136,14 +155,14 @@
   display: flex;
   flex-direction: column;
   gap: var(--e-1);
-  padding: 40px 18px var(--e-4);
+  padding: 40px var(--e-4) var(--e-4);
   text-align: left;
   background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, 0));
 }
 
 .galeria__titulo {
   font-family: var(--fuente-titulo);
-  font-size: 1.05rem;
+  font-size: var(--t-h4);
   letter-spacing: .04em;
   color: #fff;
 }
@@ -198,23 +217,28 @@
 
 .visor__figura img {
   width: 100%;
+  /* En pantallas normales todas las fotos topan contra el max-height y la
+     figura no se mueve al pasar de una a otra. En monitores altos, en cambio,
+     el tope deja de actuar sobre las apaisadas y aparece un salto entre ellas
+     y los retratos; este piso lo recorta. El sobrante lo tapa el fondo negro. */
+  min-height: 40vh;
   max-height: 68vh;
   object-fit: contain;
   background-color: #000;
 }
 
 .visor__pie {
-  padding: 18px 22px 22px;
+  padding: var(--e-4) var(--e-5) var(--e-5);
   border-top: 1px solid var(--borde);
 }
 
 .visor__titulo {
   font-family: var(--fuente-titulo);
-  font-size: 1.3rem;
+  font-size: var(--t-h2);
   letter-spacing: .05em;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 6px;
+  margin-bottom: var(--e-1);
 }
 
 .visor__epigrafe {
@@ -223,7 +247,7 @@
 }
 
 .visor__credito {
-  margin-top: 10px;
+  margin-top: var(--e-2);
   font-size: var(--t-xs);
   letter-spacing: .04em;
   color: var(--texto-debil);
@@ -249,12 +273,17 @@
 }
 
 .visor__cerrar:hover,
-.visor__nav:hover {
+.visor__nav:hover,
+.visor__cerrar:focus-visible,
+.visor__nav:focus-visible {
   background-color: var(--rojo);
   border-color: var(--rojo);
   color: #fff;
   transform: scale(1.08);
 }
+
+.visor__cerrar:active,
+.visor__nav:active { transform: scale(.96); background-color: var(--rojo-claro); }
 
 .visor__cerrar {
   position: absolute;
@@ -268,19 +297,21 @@
   .galeria__boton:hover img { transform: none; filter: saturate(.85); }
 }
 
+/* El tamaño táctil depende del dedo, no del ancho: en una tablet táctil de
+   1024 px los filtros también tienen que llegar al mínimo. */
+@media (pointer: coarse) {
+  .filtro {
+    min-height: var(--toque-min);
+    padding: var(--e-2) var(--e-4);
+  }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 992px) {
   .galeria__item { flex: 0 1 calc(50% - 10px); }
 }
 
 @media (max-width: 768px) {
-  /* Los filtros mantienen el mínimo táctil aunque baje la tipografía */
-  .filtro {
-    min-height: var(--toque-min);
-    padding: var(--e-2) var(--e-4);
-    font-size: var(--t-xs);
-  }
-
   .visor { padding: var(--e-4); gap: var(--e-2); }
   .visor__figura img { max-height: 52vh; }
   .visor__cerrar,
@@ -298,7 +329,11 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  .visor__nav--anterior  { left: 10px; }
-  .visor__nav--siguiente { right: 10px; }
-  .visor__nav:hover { transform: translateY(-50%) scale(1.08); }
+  .visor__nav--anterior  { left: var(--e-2); }
+  .visor__nav--siguiente { right: var(--e-2); }
+
+  /* Aquí el transform también centra, así que hay que rehacerlo entero */
+  .visor__nav:hover,
+  .visor__nav:focus-visible { transform: translateY(-50%) scale(1.08); }
+  .visor__nav:active { transform: translateY(-50%) scale(.96); }
 }
