@@ -16,3 +16,4 @@ __pycache__/
 
 # Herramientas de Claude Code (no forman parte de la entrega)
 .claude/
+.agents/

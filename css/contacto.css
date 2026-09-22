@@ -42,10 +42,15 @@
   width: 100%;
   padding: 14px var(--e-4);
   background-color: var(--superficie);
-  border: 1px solid var(--borde);
+  /* Lo único que distingue el campo del fondo de la página es este contorno,
+     así que necesita 3:1 (WCAG 1.4.11). Con --borde daba 1.2:1 y el campo
+     casi se perdía contra la página. */
+  border: 1px solid var(--borde-campo);
   border-radius: var(--radio);
   font-family: var(--fuente-texto);
-  font-size: var(--t-lg);
+  /* 16 px como piso: por debajo, Safari en iPhone hace zoom automático al
+     enfocar el campo y deja la página descuadrada. */
+  font-size: max(var(--t-lg), 16px);
   color: var(--texto);
   transition: border-color var(--transicion), background-color var(--transicion);
 }
@@ -103,9 +108,17 @@
 
 .campo--error .campo__error { display: flex; }
 
+/* El rojo oscuro daba 2:1 contra el fondo del campo: no alcanzaba para
+   señalar el estado de error por sí solo. El claro llega a 3.6:1. */
 .campo--error input,
 .campo--error select,
-.campo--error textarea { border-color: var(--rojo); }
+.campo--error textarea { border-color: var(--rojo-claro); }
+
+/* La casilla no tiene borde propio que teñir: se le marca un contorno */
+.campo--error .check input[type="checkbox"] {
+  outline: 2px solid var(--rojo-claro);
+  outline-offset: 2px;
+}
 
 /* Checkbox */
 .campo--check { margin-top: var(--e-1); }
@@ -146,9 +159,9 @@
 .formulario__ok {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--e-2);
   margin-top: 20px;
-  padding: var(--e-4) 18px;
+  padding: var(--e-4);
   font-size: var(--t-md);
   color: #9fe0b0;
   background-color: rgba(45, 120, 70, .14);
@@ -156,18 +169,64 @@
   border-radius: var(--radio);
 }
 
+/* ---------- Resumen de errores ----------
+   Con cinco campos, marcar cada uno por separado obliga a recorrer todo el
+   formulario para saber qué falta. El resumen va arriba, recibe el foco al
+   fallar el envío y cada línea lleva al campo que hay que corregir. */
+.formulario__errores {
+  margin-bottom: var(--e-5);
+  padding: var(--e-4);
+  background-color: rgba(179, 18, 43, .1);
+  border: 1px solid var(--rojo-claro);
+  border-radius: var(--radio);
+}
+
+.formulario__errores:focus-visible {
+  outline: 2px solid var(--dorado);
+  outline-offset: 3px;
+}
+
+.formulario__errores-titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-size: var(--t-md);
+  font-weight: 600;
+  color: var(--rojo-texto);
+  margin-bottom: var(--e-2);
+}
+
+.formulario__errores ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+  font-size: var(--t-sm);
+}
+
+.formulario__errores a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  color: var(--texto);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.formulario__errores a:hover,
+.formulario__errores a:focus-visible { color: var(--rojo-texto); }
+
 /* ---------- Columna de datos ---------- */
 .datos {
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: var(--e-5);
   margin-bottom: var(--e-6);
 }
 
 .dato {
   display: flex;
   align-items: flex-start;
-  gap: 18px;
+  gap: var(--e-4);
 }
 
 .dato__icono {
@@ -195,15 +254,26 @@
 
 .dato p { font-size: var(--t-md); color: var(--texto-tenue); }
 .dato a { color: var(--dorado); text-decoration: underline; text-underline-offset: 3px; }
-.dato a:hover { color: var(--rojo-texto); }
+
+/* El correo ocupa su propio renglón: no es un enlace dentro de una frase, así
+   que no le alcanza la excepción de los enlaces en línea y necesita los 24 px
+   de alto de la WCAG 2.2. Se lo señala por el mailto y no por :only-child,
+   que ignora los nodos de texto y también atrapaba al de "Temporadas". */
+.dato a[href^="mailto:"] {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+.dato a:hover,
+.dato a:focus-visible { color: var(--rojo-texto); }
 
 /* ---------- Preguntas frecuentes ---------- */
-.titulo-seccion--menor { font-size: 1.15rem; margin-bottom: 18px; }
+.titulo-seccion--menor { font-size: var(--t-h3); margin-bottom: var(--e-4); }
 
 .faq {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--e-2);
   margin-bottom: var(--e-6);
 }
 
@@ -220,8 +290,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 15px 18px;
+  gap: var(--e-3);
+  /* 16 px arriba y abajo dejan la pregunta en 51 px: cómoda para el dedo */
+  padding: var(--e-4);
   font-size: var(--t-md);
   font-weight: 600;
   color: var(--texto);
@@ -231,22 +302,24 @@
 
 .faq__pregunta::-webkit-details-marker { display: none; }
 
-/* Flecha propia */
+/* Signo propio. Es "+" cerrado y "−" abierto: un cambio de `content` no se
+   puede transicionar, así que antes había una transición que no hacía nada. */
 .faq__pregunta::after {
   content: "+";
   flex-shrink: 0;
   font-size: 1.2rem;
   line-height: 1;
   color: var(--rojo-texto);
-  transition: transform var(--transicion);
 }
 
 .faq__item[open] .faq__pregunta::after { content: "\2212"; }
 
-.faq__pregunta:hover { color: #fff; }
+.faq__pregunta:hover,
+.faq__pregunta:focus-visible { color: #fff; }
+.faq__pregunta:active { color: var(--rojo-texto); }
 
 .faq__respuesta {
-  padding: 0 18px var(--e-4);
+  padding: 0 var(--e-4) var(--e-4);
   font-size: var(--t-md);
   color: var(--texto-tenue);
 }
@@ -259,7 +332,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--e-4);
-  padding: 26px;
+  padding: var(--e-5);
 }
 
 .redes-caja:hover { transform: none; }

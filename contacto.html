@@ -14,6 +14,9 @@
   <meta property="og:description" content="Escribinos: sugerencias, correcciones y colaboraciones para el sitio de fans de Los Soprano.">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Font Awesome. El preconnect abre la conexion con el CDN mientras el
+       navegador sigue leyendo el head: ahorra el ida y vuelta de DNS y TLS. -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,11 +39,31 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="menu" aria-label="Principal">
-        <ul class="nav__lista">
-          <li><a class="nav__link" href="index.html">Inicio</a></li>
-          <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
-          <li><a class="nav__link" href="galeria.html">Galería</a></li>
-          <li><a class="nav__link nav__link--activo" aria-current="page" href="contacto.html">Contacto</a></li>
+        <ul role="list" class="nav__lista">
+          <li class="nav__item"><a class="nav__link" href="index.html">Inicio</a></li>
+          <li class="nav__item nav__item--desplegable">
+            <div class="nav__fila">
+              <a class="nav__link" href="temporadas.html">Temporadas</a>
+              <!-- El link lleva a la página; el botón abre el submenú. Separados,
+                   el submenú se puede abrir con clic, toque o teclado sin
+                   depender del hover, que en pantallas táctiles no existe. -->
+              <button class="nav__despliegue" type="button" aria-expanded="false"
+                      aria-controls="submenu-temporadas" aria-label="Submenú de Temporadas">
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </div>
+            <ul role="list" class="submenu" id="submenu-temporadas">
+              <li><a class="submenu__link" href="temporadas.html#temporada-1">Temporada 1 <span class="submenu__meta">1999</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-2">Temporada 2 <span class="submenu__meta">2000</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-3">Temporada 3 <span class="submenu__meta">2001</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-4">Temporada 4 <span class="submenu__meta">2002</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-5">Temporada 5 <span class="submenu__meta">2004</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-6">Temporada 6 <span class="submenu__meta">2006 – 2007</span></a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="personajes.html">Personajes</a></li>
+          <li class="nav__item"><a class="nav__link" href="galeria.html">Galería</a></li>
+          <li class="nav__item"><a class="nav__link nav__link--activo" aria-current="page" href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
     </div>
@@ -51,7 +74,12 @@
 
     <div class="contenedor">
       <div class="encabezado-pagina">
-        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> <span aria-current="page">Contacto</span></nav>
+        <nav class="migas" aria-label="Ruta de navegación">
+          <ol class="migas__lista">
+            <li><a href="index.html">Inicio</a></li>
+            <li><span aria-current="page">Contacto</span></li>
+          </ol>
+        </nav>
         <h1 class="encabezado-pagina__titulo">Contacto</h1>
         <span class="hero__linea" aria-hidden="true"></span>
         <p class="encabezado-pagina__bajada">
@@ -69,6 +97,22 @@
           <h2 class="titulo-seccion">Escribinos</h2>
 
           <form class="formulario" id="formContacto" novalidate>
+
+            <!-- Resumen de errores. Aparece solo si falla el envío: recibe el
+                 foco y cada línea lleva al campo que hay que corregir. Los
+                 errores de cada campo siguen apareciendo igual debajo. -->
+            <!-- Región enfocable y no live: el resumen se reescribe cada vez
+                 que el usuario corrige un campo, y como región viva estaría
+                 interrumpiéndolo en cada salto de campo. El anuncio lo
+                 produce el foco, que se le lleva al fallar el envío. -->
+            <div class="formulario__errores oculto" id="formErrores"
+                 role="region" tabindex="-1" aria-labelledby="formErroresTitulo">
+              <p class="formulario__errores-titulo" id="formErroresTitulo">
+                <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                Revisá estos campos antes de enviar
+              </p>
+              <ul role="list" id="formErroresLista"></ul>
+            </div>
 
             <div class="campo">
               <label for="nombre">Nombre y apellido <span class="req">*</span></label>
@@ -123,8 +167,10 @@
               no envía datos a ningún servidor.
             </p>
 
-            <!-- Mensaje de resultado -->
-            <p class="formulario__ok oculto" id="formOk" role="status">
+            <!-- Mensaje de resultado. tabindex="-1" para poder llevarle el
+                 foco: si no, tras enviar el foco se queda en un botón sobre
+                 un formulario ya vacío. -->
+            <p class="formulario__ok oculto" id="formOk" role="status" tabindex="-1">
               <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
               ¡Gracias! Tu mensaje quedó registrado. Te respondemos a la brevedad.
             </p>
@@ -135,7 +181,7 @@
         <div class="contacto__col">
           <h2 class="titulo-seccion">Otros canales</h2>
 
-          <ul class="datos">
+          <ul role="list" class="datos">
             <li class="dato">
               <span class="dato__icono"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
               <div>
@@ -168,7 +214,7 @@
           </ul>
 
           <h2 class="titulo-seccion titulo-seccion--menor">Preguntas frecuentes</h2>
-          <ul class="faq">
+          <ul role="list" class="faq">
             <li>
               <details class="faq__item">
                 <summary class="faq__pregunta">¿Puedo reutilizar las imágenes del sitio?</summary>
@@ -210,7 +256,7 @@
 
           <div class="tarjeta redes-caja">
             <p class="redes-caja__titulo">También por redes</p>
-            <ul class="redes">
+            <ul role="list" class="redes">
               <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
               <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
               <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
@@ -232,7 +278,7 @@
           Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
           Este sitio no está afiliado ni patrocinado por HBO.
         </p>
-        <ul class="pie__enlaces" aria-label="Enlaces legales">
+        <ul role="list" class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -240,7 +286,7 @@
       </div>
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
-        <ul class="redes">
+        <ul role="list" class="redes">
           <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>

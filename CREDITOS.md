@@ -63,6 +63,16 @@ No aparecen en la galería.
 | `f5-silvio.jpg` | HBO | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | 112 KB | [Commons](https://commons.wikimedia.org/wiki/File:Silvio_Dante_soccer_match_(Tony_Soprano%27s_Family_Captains).jpg) |
 | `f6-furio.jpg` | HBO | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | 49 KB | [Commons](https://commons.wikimedia.org/wiki/File:Furio_Giunta_and_Rocco_De_Trollio_(The_Sopranos_Family_Tree).jpg) |
 
+## Imágenes de la página de personajes
+
+`personajes.html` reutiliza fotos que ya están acreditadas arriba en la tabla de la
+galería (los fotogramas de cada personaje y los retratos de Edie Falco y Lorraine
+Bracco). La única imagen propia de esa página es:
+
+| Archivo | Autor | Licencia | Origen |
+|---|---|---|---|
+| `img/personajes/tony-blundetto.jpg` | HBO | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Tony_Blundetto_(The_Sopranos_Top_25_Best_Lines).jpg) |
+
 ## Tipografías e iconos
 
 - Tipografías **Cinzel** e **Inter** — Google Fonts (SIL Open Font License).

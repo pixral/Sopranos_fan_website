@@ -14,6 +14,9 @@
   <meta property="og:description" content="Las 6 temporadas y los 86 episodios de Los Soprano, temporada por temporada.">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Font Awesome. El preconnect abre la conexion con el CDN mientras el
+       navegador sigue leyendo el head: ahorra el ida y vuelta de DNS y TLS. -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,11 +39,31 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="menu" aria-label="Principal">
-        <ul class="nav__lista">
-          <li><a class="nav__link" href="index.html">Inicio</a></li>
-          <li><a class="nav__link nav__link--activo" aria-current="page" href="temporadas.html">Temporadas</a></li>
-          <li><a class="nav__link" href="galeria.html">Galería</a></li>
-          <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+        <ul role="list" class="nav__lista">
+          <li class="nav__item"><a class="nav__link" href="index.html">Inicio</a></li>
+          <li class="nav__item nav__item--desplegable">
+            <div class="nav__fila">
+              <a class="nav__link nav__link--activo" aria-current="page" href="temporadas.html">Temporadas</a>
+              <!-- El link lleva a la página; el botón abre el submenú. Separados,
+                   el submenú se puede abrir con clic, toque o teclado sin
+                   depender del hover, que en pantallas táctiles no existe. -->
+              <button class="nav__despliegue" type="button" aria-expanded="false"
+                      aria-controls="submenu-temporadas" aria-label="Submenú de Temporadas">
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </div>
+            <ul role="list" class="submenu" id="submenu-temporadas">
+              <li><a class="submenu__link" href="temporadas.html#temporada-1">Temporada 1 <span class="submenu__meta">1999</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-2">Temporada 2 <span class="submenu__meta">2000</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-3">Temporada 3 <span class="submenu__meta">2001</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-4">Temporada 4 <span class="submenu__meta">2002</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-5">Temporada 5 <span class="submenu__meta">2004</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-6">Temporada 6 <span class="submenu__meta">2006 – 2007</span></a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="personajes.html">Personajes</a></li>
+          <li class="nav__item"><a class="nav__link" href="galeria.html">Galería</a></li>
+          <li class="nav__item"><a class="nav__link" href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
     </div>
@@ -51,7 +74,12 @@
 
     <div class="contenedor">
       <div class="encabezado-pagina">
-        <nav class="migas" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> <span>/</span> <span aria-current="page">Temporadas</span></nav>
+        <nav class="migas" aria-label="Ruta de navegación">
+          <ol class="migas__lista">
+            <li><a href="index.html">Inicio</a></li>
+            <li><span aria-current="page">Temporadas</span></li>
+          </ol>
+        </nav>
         <h1 class="encabezado-pagina__titulo">Temporadas</h1>
         <span class="hero__linea" aria-hidden="true"></span>
         <p class="encabezado-pagina__bajada">
@@ -63,7 +91,7 @@
 
     <div class="contenedor">
       <!-- Datos generales -->
-      <ul class="stats">
+      <ul role="list" class="stats">
         <li class="stat"><span class="stat__numero">6</span><span class="stat__texto">Temporadas</span></li>
         <li class="stat"><span class="stat__numero">86</span><span class="stat__texto">Episodios</span></li>
         <li class="stat"><span class="stat__numero">21</span><span class="stat__texto">Premios Emmy</span></li>
@@ -72,10 +100,10 @@
     </div>
 
     <section class="contenedor seccion">
-      <ul class="temporadas">
+      <ul role="list" class="temporadas">
 
         <!-- Temporada 1 -->
-        <li class="temporada tarjeta">
+        <li class="temporada tarjeta" id="temporada-1">
           <div class="temporada__cabecera">
             <span class="temporada__numero">01</span>
             <div>
@@ -90,7 +118,7 @@
               pánico, en la familia DiMeo se acomodan las piezas: su tío Junior quiere el
               lugar de jefe y su madre Livia mueve los hilos desde el geriátrico.
             </p>
-            <ul class="temporada__datos">
+            <ul role="list" class="temporada__datos">
               <li class="chip">Piloto</li>
               <li class="chip" lang="en">College</li>
               <li class="chip" lang="en">I Dream of Jeannie Cusamano</li>
@@ -99,7 +127,7 @@
         </li>
 
         <!-- Temporada 2 -->
-        <li class="temporada tarjeta">
+        <li class="temporada tarjeta" id="temporada-2">
           <div class="temporada__cabecera">
             <span class="temporada__numero">02</span>
             <div>
@@ -114,7 +142,7 @@
               Al mismo tiempo, la sospecha de que hay un informante cerca empieza a
               hacerse imposible de ignorar.
             </p>
-            <ul class="temporada__datos">
+            <ul role="list" class="temporada__datos">
               <li class="chip">Big Pussy</li>
               <li class="chip" lang="en">Funhouse</li>
               <li class="chip">El negocio de las acciones</li>
@@ -123,7 +151,7 @@
         </li>
 
         <!-- Temporada 3 -->
-        <li class="temporada tarjeta">
+        <li class="temporada tarjeta" id="temporada-3">
           <div class="temporada__cabecera">
             <span class="temporada__numero">03</span>
             <div>
@@ -138,7 +166,7 @@
               y Jackie Aprile Jr., que quiere entrar al negocio por la puerta grande.
               Meadow empieza la universidad y la distancia con la casa se agranda.
             </p>
-            <ul class="temporada__datos">
+            <ul role="list" class="temporada__datos">
               <li class="chip" lang="en">Employee of the Month</li>
               <li class="chip" lang="en">Pine Barrens</li>
               <li class="chip">Gloria Trillo</li>
@@ -147,7 +175,7 @@
         </li>
 
         <!-- Temporada 4 -->
-        <li class="temporada tarjeta">
+        <li class="temporada tarjeta" id="temporada-4">
           <div class="temporada__cabecera">
             <span class="temporada__numero">04</span>
             <div>
@@ -162,7 +190,7 @@
               Carmela empieza a mirar su matrimonio con otros ojos. La temporada termina
               con la pelea más devastadora de la serie.
             </p>
-            <ul class="temporada__datos">
+            <ul role="list" class="temporada__datos">
               <li class="chip" lang="en">Whitecaps</li>
               <li class="chip">Furio</li>
               <li class="chip">Pie-O-My</li>
@@ -171,7 +199,7 @@
         </li>
 
         <!-- Temporada 5 -->
-        <li class="temporada tarjeta">
+        <li class="temporada tarjeta" id="temporada-5">
           <div class="temporada__cabecera">
             <span class="temporada__numero">05</span>
             <div>
@@ -186,7 +214,7 @@
               Tony a un choque frontal con Nueva York, mientras en North Caldwell se
               negocian los términos de una reconciliación.
             </p>
-            <ul class="temporada__datos">
+            <ul role="list" class="temporada__datos">
               <li class="chip" lang="en">Long Term Parking</li>
               <li class="chip">Tony B.</li>
               <li class="chip">Johnny Sack</li>
@@ -195,7 +223,7 @@
         </li>
 
         <!-- Temporada 6 -->
-        <li class="temporada tarjeta">
+        <li class="temporada tarjeta" id="temporada-6">
           <div class="temporada__cabecera">
             <span class="temporada__numero">06</span>
             <div>
@@ -211,7 +239,7 @@
               familia que empieza a saber demasiado. Todo termina en un reservado de
               Holsten&rsquo;s, con <span lang="en">&ldquo;Don&rsquo;t Stop Believin&rsquo;&rdquo;</span> sonando en la rocola.
             </p>
-            <ul class="temporada__datos">
+            <ul role="list" class="temporada__datos">
               <li class="chip" lang="en">Join the Club</li>
               <li class="chip" lang="en">Kennedy and Heidi</li>
               <li class="chip" lang="en">Made in America</li>
@@ -232,7 +260,7 @@
           Todos los derechos sobre la serie pertenecen a HBO y sus respectivos titulares.
           Este sitio no está afiliado ni patrocinado por HBO.
         </p>
-        <ul class="pie__enlaces" aria-label="Enlaces legales">
+        <ul role="list" class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -240,7 +268,7 @@
       </div>
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
-        <ul class="redes">
+        <ul role="list" class="redes">
           <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>

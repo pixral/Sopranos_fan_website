@@ -8,7 +8,6 @@
   <title>Los Soprano | Sitio oficial de fans</title>
   <meta name="description" content="Sitio dedicado a Los Soprano: temporadas, galería y contacto. Todo sobre la serie que cambió la televisión.">
 
-  <!-- Font Awesome -->
   <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_AR">
@@ -17,6 +16,9 @@
   <meta property="og:description" content="Sitio dedicado a Los Soprano: temporadas, galería y contacto. Todo sobre la serie que cambió la televisión.">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Font Awesome. El preconnect abre la conexion con el CDN mientras el
+       navegador sigue leyendo el head: ahorra el ida y vuelta de DNS y TLS. -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,11 +45,31 @@
       </button>
 
       <nav class="nav" id="menu" aria-label="Principal">
-        <ul class="nav__lista">
-          <li><a class="nav__link nav__link--activo" aria-current="page" href="index.html">Inicio</a></li>
-          <li><a class="nav__link" href="temporadas.html">Temporadas</a></li>
-          <li><a class="nav__link" href="galeria.html">Galería</a></li>
-          <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+        <ul role="list" class="nav__lista">
+          <li class="nav__item"><a class="nav__link nav__link--activo" aria-current="page" href="index.html">Inicio</a></li>
+          <li class="nav__item nav__item--desplegable">
+            <div class="nav__fila">
+              <a class="nav__link" href="temporadas.html">Temporadas</a>
+              <!-- El link lleva a la página; el botón abre el submenú. Separados,
+                   el submenú se puede abrir con clic, toque o teclado sin
+                   depender del hover, que en pantallas táctiles no existe. -->
+              <button class="nav__despliegue" type="button" aria-expanded="false"
+                      aria-controls="submenu-temporadas" aria-label="Submenú de Temporadas">
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </div>
+            <ul role="list" class="submenu" id="submenu-temporadas">
+              <li><a class="submenu__link" href="temporadas.html#temporada-1">Temporada 1 <span class="submenu__meta">1999</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-2">Temporada 2 <span class="submenu__meta">2000</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-3">Temporada 3 <span class="submenu__meta">2001</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-4">Temporada 4 <span class="submenu__meta">2002</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-5">Temporada 5 <span class="submenu__meta">2004</span></a></li>
+              <li><a class="submenu__link" href="temporadas.html#temporada-6">Temporada 6 <span class="submenu__meta">2006 – 2007</span></a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="personajes.html">Personajes</a></li>
+          <li class="nav__item"><a class="nav__link" href="galeria.html">Galería</a></li>
+          <li class="nav__item"><a class="nav__link" href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
 
@@ -138,7 +160,7 @@
           <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a>
           vía <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>.
         </p>
-        <ul class="pie__enlaces" aria-label="Enlaces legales">
+        <ul role="list" class="pie__enlaces" aria-label="Enlaces legales">
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -147,7 +169,7 @@
 
       <div class="pie__redes">
         <p class="pie__redes-titulo">Seguinos</p>
-        <ul class="redes">
+        <ul role="list" class="redes">
           <li><a class="redes__link" href="#" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
           <li><a class="redes__link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>

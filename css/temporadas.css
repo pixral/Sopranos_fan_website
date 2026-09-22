@@ -7,16 +7,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--e-4);
-  margin-top: 34px;
+  margin-top: var(--e-6);
 }
 
 .stat {
+  /* min-width: 0 para que el ítem pueda encogerse por debajo de su contenido:
+     si no, en pantallas de 320 px la fila desborda a lo ancho. */
   flex: 1 1 180px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--e-1);
-  padding: 22px var(--e-4);
+  padding: var(--e-5) var(--e-4);
   background-color: var(--superficie);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
@@ -24,7 +27,7 @@
 
 .stat__numero {
   font-family: var(--fuente-titulo);
-  font-size: 2.4rem;
+  font-size: var(--t-dato);
   font-weight: 700;
   line-height: 1;
   color: var(--rojo-claro);
@@ -41,22 +44,25 @@
 .temporadas {
   display: flex;
   flex-wrap: wrap;
-  gap: 26px;
+  gap: var(--e-5);
 }
 
 .temporada {
-  flex: 1 1 calc(50% - 13px);
-  min-width: 300px;
+  /* El min-width fijo de 300 px desbordaba la pantalla en móviles de 320 px,
+     donde el contenedor deja 284 px útiles. Con min() la tarjeta nunca pide
+     más ancho del que hay disponible. */
+  flex: 1 1 calc(50% - 12px);
+  min-width: min(300px, 100%);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: var(--e-4);
   padding: 28px;
 }
 
 .temporada__cabecera {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: var(--e-4);
   padding-bottom: var(--e-4);
   border-bottom: 1px solid var(--borde);
 }
@@ -69,7 +75,7 @@
   width: 64px;
   height: 64px;
   font-family: var(--fuente-titulo);
-  font-size: 1.6rem;
+  font-size: var(--t-num);
   font-weight: 700;
   color: var(--texto);
   background-color: var(--negro);
@@ -79,7 +85,7 @@
 
 .temporada__titulo {
   font-family: var(--fuente-titulo);
-  font-size: 1.35rem;
+  font-size: var(--t-h2);
   font-weight: 500;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -96,7 +102,7 @@
 .temporada__cuerpo {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: var(--e-4);
   flex: 1;
 }
 
@@ -110,7 +116,10 @@
 }
 
 .chip {
-  padding: 6px 13px;
+  /* Los títulos de episodio son largos: la etiqueta se parte en varias
+     líneas antes que empujar el ancho de la tarjeta. */
+  min-width: 0;
+  padding: 6px var(--e-3);
   font-size: var(--t-xs);
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -122,15 +131,27 @@
 
 .temporada:hover .chip { border-color: rgba(179, 18, 43, .4); }
 
+/* Al llegar desde el submenú (temporadas.html#temporada-3), la tarjeta elegida
+   queda marcada: sin esto, después del salto no es obvio cuál es. */
+.temporada:target {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 1px var(--rojo), var(--sombra-media);
+}
+
+.temporada:target .temporada__numero {
+  background-color: var(--rojo);
+  color: #fff;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .temporada {
     flex: 1 1 100%;
-    padding: 22px;
+    padding: var(--e-5);
   }
 
-  .temporada__numero { width: 54px; height: 54px; font-size: 1.3rem; }
-  .stat { flex: 1 1 140px; padding: 18px var(--e-3); }
+  .temporada__numero { width: 56px; height: 56px; font-size: var(--t-h2); }
+  .stat { flex: 1 1 140px; padding: var(--e-4) var(--e-3); }
   .stat__numero { font-size: 1.9rem; }
 }
 
